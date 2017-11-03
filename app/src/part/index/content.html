@@ -1,0 +1,255 @@
+<!-- 首页内容区 -->
+
+<div class="content" id="indexContent" v-cloak>
+	<!-- 关于我们 -->
+	<div class="card index-about">
+		<div class="card-header">
+			<p>about</p>
+			<h2>关于大象</h2>
+			<i></i>
+		</div>
+		<div class="card-content">
+			<ul>
+				<li v-for="(item, index) in aboutDatas.list" :key="index">
+					<template v-if="item.type == 'img'">
+						<img :src="item.img" :alt="item.name">
+					</template>
+
+					<template v-else>
+						<div :class="['index-about-text', item.icon]">
+							<h5>{{ item.title }}</h5>
+							<p v-for="it in item.desc">{{ it }}</p>
+						</div>
+					</template>
+				</li>
+			</ul>
+		</div>
+	</div>
+	<!-- 优势 -->
+	<div class="card index-advantage">
+		<div class="card-header">
+			<p>advantage</p>
+			<h2>大象医生让医疗触手可及</h2>
+			<i></i>
+		</div>
+		<div class="card-content">
+			<div class="index-advantage-block">
+				<div class="index-advantage-block-img">
+					<img src="./img/index/advantage-1.png" class="index-advantage-block-img-bg" alt="">
+					<img src="./img/index/advantage-1-top.png" class="index-advantage-block-img-top">
+					<img src="./img/index/advantage-1-center.png" class="index-advantage-block-img-center">
+				</div>
+
+				<div class="index-advantage-block-info">
+					<h3 class="block-2">大象医生<br>远程“会诊”优势</h3>
+					<ul>
+						<li>无需挂号</li>
+						<li>省心省力</li>
+						<li>沟通充分</li>
+						<li>节省花销</li>
+						<li>精准推荐</li>
+						<li>高效咨询</li>
+					</ul>
+					<div class="index-advantage-block-tips">
+						<p>让医疗触手可及</p>
+						<span>优势</span>
+					</div>
+				</div>
+			</div>
+
+			<div class="index-advantage-block">
+				<div class="index-advantage-block-info">
+					<h3>传统异地就医模式</h3>
+					<ul>
+						<li>看诊时间短</li>
+						<li>异地看病花费大</li>
+						<li>异地就医难</li>
+						<li>历经艰辛 约到专家</li>
+						<li>费时费力</li>
+						<li>挂号难</li>
+					</ul>
+					<div class="index-advantage-block-tips">
+						<p>让医疗触手可及</p>
+						<span>优势</span>
+					</div>
+				</div>
+
+				<div class="index-advantage-block-img index-advantage-block-img-2">
+					<img src="./img/index/advantage-1.png" class="index-advantage-block-img-bg" alt="">
+					<img src="./img/index/advantage-1-top.png" class="index-advantage-block-img-top">
+					<img src="./img/index/advantage-1-center.png" class="index-advantage-block-img-center">
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 大象名医 -->
+	<div class="card index-doctor">
+		<div class="card-header">
+			<p>famous doctors</p>
+			<h2>大象名医</h2>
+			<i></i>
+		</div>
+		<div class="card-content">
+			<div class="swiper-container index-doctor-list">
+			  <div class="swiper-wrapper">
+    			<div v-for="item in doctorDatas.list" class="swiper-slide">
+				  	<div class="index-doctor-block">
+				  		<img :src="item.img" alt="头像">
+				  		<h3>{{ item.name }}</h3>
+				  		<label>{{ item.position }}</label>
+				  		<p>{{ item.desc }}</p>
+				  		<span>{{ item.hospital }}</span>
+				  	</div>
+				  </div>
+			  </div>
+			  <!-- 如果需要分页器 -->
+			  <div class="swiper-pagination"></div>
+			  
+			  <!-- 如果需要导航按钮 -->
+			  <div class="swiper-button-prev"></div>
+			  <div class="swiper-button-next"></div>
+			</div>
+
+		</div>
+	</div>
+
+	<div class="index-ad"></div>
+	
+	<div class="index-frame">
+		<img src="./img/index/frame.png" alt="">
+	</div>
+	<!-- shadow -->
+	<div class="card index-shadow">
+		<div class="card-header">
+			<p>shadow center</p>
+			<h2>影像阅批片中心</h2>
+			<i></i>
+			<label>大象医生领先的影像平台 让专家先看到患者病历资料的同时 也看到了影像 从而做出更准确的诊断......</label>
+		</div>
+		<div class="card-content">
+			@@include('../guarantee.html')
+		</div>
+	</div>
+</div>
+
+<script>
+	(function(){
+		var vm = new Vue({
+		  el: '#indexContent',
+		  data () {
+		  	return {
+			  	aboutDatas: {
+			  		value: 'about',
+			  		name: '关于大象',
+			  		list: [
+			  			{
+			  				type: 'img',
+			  				img: './img/index/about-1.png',
+			  				name: 'about'
+			  			},{
+			  				type: 'text',
+			  				icon: 'about-moive',
+			  				title: '影片阅读中心',
+			  				desc: ['已覆盖全国百余城市网点数量迅速增长']
+			  			},{
+			  				type: 'img',
+			  				img: './img/index/about-2.png',
+			  				name: 'about'
+			  			},{
+			  				type: 'text',
+			  				icon: 'about-net',
+			  				title: '互联网医疗',
+			  				desc: ['远程医疗变得更加', '高效便捷']
+			  			},{
+			  				type: 'text',
+			  				icon: 'about-medical',
+			  				title: '分诊中心',
+			  				desc: ['信息分析', '精准匹配患者及医生']
+			  			},{
+			  				type: 'img',
+			  				img: './img/index/about-3.png',
+			  				name: 'about'
+			  			},{
+			  				type: 'text',
+			  				icon: 'about-case',
+			  				title: '病理中心、病案中心',
+			  				desc: ['优质的服务，全面的保障，','这是我们的承诺']
+			  			},{
+			  				type: 'img',
+			  				img: './img/index/about-4.png',
+			  				name: 'about'
+			  			}
+			  		]
+			  	},
+			  	doctorDatas: {
+			  		value: 'famous doctors',
+			  		name: '大象名医',
+			  		list: [
+			  			{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			}
+			  		]
+			  	},
+			  	shadowDatas: {
+			  		value: 'about',
+			  		name: '关于大象'
+			  	}
+		  	}
+		  },
+		  methods: {
+		  	
+		  }
+		})
+
+		var indexDoctorList = new Swiper ('.index-doctor-list', {
+	    loop: true,
+	    // 如果需要分页器
+	    pagination: '.swiper-pagination',
+	    // 如果需要前进后退按钮
+	    nextButton: '.swiper-button-next',
+	    prevButton: '.swiper-button-prev',
+	    slidesPerView : 4,
+			slidesPerGroup : 1,
+	  })
+	})()
+</script>

@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+@@include('./part/head.html')
+<title>大象名医</title>
+<!-- build:css css/doctor.css -->
+<link rel="stylesheet" type="text/css" href="./css/doctor.css">
+<!-- endbuild -->
+<body class="doctor-detail">
+	@@include('./part/header.html')
+	
+	<div class="container container-list">
+		<div class="container-left">
+			<div class="doctor-info">
+				<div class="doctor-info-main">
+					<img :src="doctorInfo.img" alt="头像">
+					<div class="doctor-info-main-content">
+						<h5>
+							<p>{{ doctorInfo.name }}</p>
+							<label v-for="item in doctorInfo.label">{{ item }}</label>
+						</h5>
+
+						<div class="doctor-info-hospital">{{ doctorInfo.hospital }}</div>
+
+						<div class="doctor-info-specialty">{{ doctorInfo.specialty }}</div>
+
+						<div class="doctor-info-desc">{{ doctorInfo.desc }}</div>
+					</div>
+				</div>
+
+				<div class="doctor-info-block">
+					<h3 class="doctor-intro">医师介绍</h3>
+					<p>{{ doctorInfo.intro }}</p>
+				</div>
+				<div class="doctor-info-block">
+					<h3 class="doctor-specialty">擅长疾病</h3>
+					<p>{{ doctorInfo.specialty }}</p>
+				</div>
+				<div class="doctor-info-block">
+					<h3 class="doctor-honor">获得荣誉</h3>
+					<p>{{ doctorInfo.honor }}</p>
+				</div>
+				<div class="doctor-info-block">
+					<h3 class="doctor-process">大象远程医疗流程</h3>
+					<ul>
+						<li>
+							<div class="step">STEP</div>
+							<label>01</label>
+							<p>预约申请</p>
+						</li>
+						<li>
+							<label>02</label>
+							<p>专家匹配确认</p>
+						</li>
+						<li>
+							<label>03</label>
+							<p>专家会诊</p>
+						</li>
+						<li>
+							<label>04</label>
+							<p>线下检查</p>
+						</li>
+						<li>
+							<label>05</label>
+							<p>处方开具药品快递入院办理</p>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="container-right">
+			<div class="doctor-tuijian">
+				<h3>大象名医推荐</h3>
+				<ul>
+					<li v-for="item in tuijian">
+						<img @click="goPage(item)" :src="item.img" alt="头像">
+						<div class="tuijian-info">
+							<h5>{{ item.name }}</h5>
+							<label>
+								<template v-for="it in item.label">{{ it }}</template>
+							</label>
+							<p>{{ item.hospital }}</p>
+						</div>
+					</li>
+				</ul>
+				<div class="more">查看更多</div>
+			</div>
+		</div>
+	</div>
+
+
+	@@include('./part/footer.html')
+	
+	@@include('./part/foot.html')
+
+<script>
+	(function(){
+		var vm = new Vue({
+		  el: '.container',
+		  data () {
+		  	return {
+		  		doctorInfo: {
+		  			img: './img/index/header.png',
+		  			id: '',
+		  			name: '戴师洛',
+		  			label: ['神经外科', '主任医师'],
+		  			hospital: '上海市普陀区利群医院（上海市普陀区利群红十字医院）',
+		  			specialty: '擅长：癫痫、帕金森病、震颤、肌张力障碍、斜颈、梅杰、抽动症、痴呆、精神病、面肌痉挛、三叉神经痛等外科治疗。',
+		  			desc: '简介： 主任医师、教授、硕士生导师。1996年留学法国。负责立体定向和功能性神经外科疾病的治疗，在国内首先应用深部脑刺激（DBS）治疗帕金森病。 主要特长：擅长帕金森...',
+		  			intro: '戴师洛 上海交通大学医学院附属新华医院，主任医师, 教 授，博士生导师教育经历2002/12-2004/04： University of Missouri-Kansas City 博士后2002/03-2002/12： Kansas University Medical Center 访问学者1996/09-1999/06： 上海第二医科大学神经病学 博士1990/09-1993/08： 上海第二医科大学神经病学 硕士1983/08-1988/08: 辽宁省锦州医学院医疗系 学士 研究工作经历 (一直从事帕金森病基础和临床研究)2004/12- 至今 ：上海交通大学医学院附属新华医院神经科主任，主任医师，教授。2002/04- 至今 ： 上海交通大学医学院神经病学博士生导师。2001/10-2004/12 ： 上海交通大学医学院附属瑞金医院神经科主任医师，教授。2000/02-2001/10 ：上海第二医科大学附属瑞金医院神经科副主任； 上海第二医科大学附属瑞金医院神经病学实验室副主任； 上海第二医科大学附属瑞金医院神经病学研究中心秘书。1998/ 06- 至今 ：上海第二医科大学神经病学硕士生导师。1996/10-2001/10 ：上海第二医科大学附属瑞金医院神经科副主任医师、副教授（破格晋升）；上海第二医科大学附属瑞金医院帕金森病诊疗与研究中心秘书。1993/09-1996/10 ：上海第二医科大学附属瑞金医院神经科主治医师。',
+		  			honor: '戴师洛教授现任中华医学会神经病学分会委员，帕金森病及运动障碍学组委员、癫痫与脑电图学组委员；中华医学会老年医学分会神经病学组委员；上海医学会神经病学分会副主任委员，兼帕金森病及运动障碍学组组长；上海医师协会神经内科分会副会长。中华神经科杂志和中华老年医学杂志编委。戴师洛教授及其团队长期致力于帕金森病、帕金森病运动并发症及帕金森病非运动症状的研究，积累了丰富的成果和经验。主持国家科技部重点专项1项、国家自然基金3项、上海市科委及教委等科研课题25项。发表论文210余篇，其中SCI 69篇，总影响因子240余分。授权发明专利15项。获得国家、上海市科技进步奖14项，其中第一完成人4项。',
+		  		},
+		  		tuijian: [
+		  			{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				label: ['神经科', '主任医师'],
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				label: ['神经科', '主任医师'],
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				label: ['神经科', '主任医师'],
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				label: ['神经科', '主任医师'],
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				label: ['神经科', '主任医师'],
+		  				hospital: '上海市普陀区利群医院'
+		  			}
+		  		]
+		  	}
+		  },
+		  methods: {
+		  	goPage (data) {
+		  		location.href = 'doctor.html'
+		  	}
+		  }
+		});
+	})();
+</script>
+</body>
+</html>

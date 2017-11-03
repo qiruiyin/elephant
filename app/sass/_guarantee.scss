@@ -1,0 +1,37 @@
+
+@charset 'utf-8';
+@import  'sandal/core';
+@import  'core/mixins', 'core/functions', 'core/vars';
+
+.guarantee {
+	@extend %clearfix;
+	width: $minW;
+	margin: 0 auto;
+}
+
+.guarantee-block {
+	float: left;
+	width: 300px;
+	height: 300px;
+	padding: 20px 50px;
+	text-align: center;
+
+	img {
+		width: 123px;
+		height: 124px;
+		margin: 0 auto;
+		margin-bottom: 10px;
+	}
+
+	h3, label {
+		line-height: 1;
+		font-size: 14px;
+		color: #2E9DD2;
+	}
+
+	p {
+		padding-top: 20px;
+		font-size: 14px;
+		text-align: center;
+	}
+}

@@ -1,0 +1,46 @@
+@charset 'utf-8';
+@import  'sandal/core';
+@import  'core/mixins', 'core/functions', 'core/vars';
+
+.case {
+	
+}
+
+.case-detail {
+	width: 1160px;
+	padding-top: 40px;
+	margin: 0 auto;
+}
+
+.case-detail-header {
+	margin-bottom: 30px;
+	
+	h3 {
+		font-size: 26px;
+		color: #2E9DD2;
+	}
+
+	p {
+		font-size: 16px;
+		color: #777;
+	}
+}
+
+.case-detail-content {
+	p {
+		margin-bottom: 20px;
+		text-align: justify;
+		font-size: 16px;
+		color: #777;
+	}
+}
+
+.case-img {
+	margin-bottom: 30px;
+	text-align: center;
+
+	img {
+		margin: 0 20px; 
+		display: inline-block;
+	}
+}

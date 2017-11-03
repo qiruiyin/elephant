@@ -1,0 +1,283 @@
+@charset 'utf-8';
+@import  'sandal/core';
+@import  'core/mixins', 'core/functions', 'core/vars';
+
+@import 'indexBanner';
+
+
+// 关于
+.index-about {
+	background-color: #F7F9FA;
+
+  ul {
+		@extend %clearfix;
+		width: $minW;
+		margin: 0 auto;
+	}
+	
+	li {
+		float: left;
+		width: 300px;
+		height: 200px;
+	}
+}
+
+.index-about-text {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	padding-left: 130px;
+  padding-top: 54px;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 4px;
+		height: 20px;
+		margin-top: -10px;
+		background: #2E9DD2;
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		top: 50%;
+		left: 30px;
+		width: 84px;
+		height: 84px;
+		margin-top: -42px;
+		background: url(../img/index/about-moive.png) no-repeat;
+		background-size: 100%;
+		background-position: center;
+	}
+
+	h5 {
+		padding-top: 10px;
+		line-height: 2;
+		font-size: 16px;
+		color: #2E9DD2;
+	}
+
+	p {
+		padding-right: 26px;
+		font-size: 12px;
+		text-align: justify;
+	}
+}
+
+.about-moive {
+	&:after {
+		background-image: url(../img/index/about-moive.png);
+	}
+}
+.about-net {
+	&:after {
+		background-image: url(../img/index/about-net.png);
+	}
+}
+.about-medical {
+	&:after {
+		background-image: url(../img/index/about-medical.png);
+	}
+}
+.about-case {
+	&:after {
+		background-image: url(../img/index/about-case.png);
+	}
+}
+
+// 大象医生让医疗触手可及
+.index-advantage {
+	position: relative;
+	padding-bottom: 0;
+
+	&:before {
+		content: "";
+		position: absolute;
+		bottom: -90px;
+		width: 200%;
+		left: -25%;
+		height: 900px;
+		background-color: #f9faff;
+		transform: rotate(-10deg);
+		transform-origin: 50% 50%;
+		z-index: -100;
+	}
+}
+
+.index-advantage-block {
+	@extend %clearfix;
+	width: $minW;
+	margin: 0 auto;
+
+	&:nth-child(n) {
+		padding-top: 90px;
+	}
+
+	&:first-child {
+		padding-top: 0;
+	}
+}
+
+.index-advantage-block-img {
+	position: relative;
+	float: left;
+	padding-top: 80px;
+	margin-right: 80px;
+
+	&.index-advantage-block-img-2 {
+		.index-advantage-block-img-top {
+			left: -80px;
+		}
+
+		.index-advantage-block-img-center {
+			left: auto;
+			right: -30px;
+			margin-top: -30px;
+			margin-left: 0;
+		}
+	}
+
+	.index-advantage-block-img-bg {
+		// width: 
+	}
+
+	.index-advantage-block-img-top,
+	.index-advantage-block-img-center {
+		position: absolute;
+		top: 6px;
+		left: 50%;
+		margin-left: 20px;
+	}
+
+	.index-advantage-block-img-center {
+		top: 50%;
+		left: -38px;
+		margin-top: -30px;
+		margin-left: 0;
+	}
+}
+
+.index-advantage-block-info {
+	position: relative;
+	float: left;
+	padding: 100px 66px 0 50px;
+
+	h3 {
+		position: relative;
+		margin-bottom: 90px;
+		line-height: 42px;
+		font-size: 30px;
+		color: #1F3B4F;
+
+		&.block-2 {
+			margin-bottom: 70px;
+			&:before {
+				left: 60px;
+				top: -20px;
+			}
+		}
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: -36px;
+			left: 110px;
+			width: 248px;
+			height: 112px;
+			opacity: 0.1;
+			border: 2px solid #1F3B4F;
+		}
+	}
+	
+	ul {
+		@extend %clearfix;
+		width: 480px;
+		padding-left: 20px;
+	}
+
+	li {
+		position: relative;
+		float: left;
+		width: 50%;
+		line-height: 1;
+		padding-left: 28px;
+		margin-bottom: 60px;
+		font-size: 24px;
+		color: #666;
+		display: block;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 50%;
+			left: 14px;
+			width: 8px;
+			height: 8px;
+			margin-top: -4px;
+			border-radius: 8px;
+			background: #1182B8;
+		}
+	}
+}
+
+.index-advantage-block-tips {
+	position: relative;
+	width: 100%;
+
+	p {
+		position: relative;
+		float: left;
+		line-height: 40px;
+		padding-left: 70px;
+		font-size: 12px;
+		color: #2E9DD2;
+
+		&:before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 50%;
+			width: 60px;
+			height: 2px;
+			margin-top: -1px;
+			background: #2e9dd2;
+		}
+	}
+
+	span {
+    float: right;
+    width: 60px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 12px;
+    color: #A8BECE;
+    background: #fff;
+    box-shadow: 0 2px 12px 0;
+    text-align: center;
+    display: inline-block;
+	}
+}
+
+// 广告
+.index-ad {
+	width: 100%;
+	height: 260px;
+	background: url(../img/index/ad.png) no-repeat;
+	background-size: auto 100%;
+	background-position: center;
+}
+
+
+.index-frame {
+	position: fixed;
+	top: 50%;
+	right: 0;
+	margin-top: -114px;
+	font-size: 20px;
+	// color: #fff;
+	z-index: 100;
+	cursor: pointer;
+}

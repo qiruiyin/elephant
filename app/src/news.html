@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html>
+@@include('./part/head.html')
+<title>新闻资讯</title>
+<!-- build:css css/news.css -->
+<link rel="stylesheet" type="text/css" href="./css/news.css">
+<!-- endbuild -->
+<body class="news">
+	@@include('./part/header.html')
+
+	<div class="banner banner-news"></div>
+
+	<div class="container">
+		<div class="container-left">
+			<div v-for="item in 15" class="news-block">
+				<img src="./img/news/news.png" alt="">
+				<div class="news-block-info">
+					<p>走进患者，走进各地--哈密远程健康讲座活动圆满落幕</p>
+					<span>2017/08/12</span>
+				</div>
+			</div>
+		</div>
+
+		<div class="container-right">
+			<div class="news-flash">
+				<div class="news-flash-header">
+					<h3>大象快讯</h3>
+				</div>
+
+				<div class="news-flash-content">
+					<ul>
+						<li v-for="item in newsFlashData" :key="item.id">
+							<a :href="item.href">{{ item.name }}</a>
+						</li>
+					</ul>
+
+					<div class="change">换一换</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	@@include('./part/footer.html')
+	
+	@@include('./part/foot.html')
+
+<script>
+	(function(){
+		var vm = new Vue({
+		  el: '.container',
+		  data () {
+		  	return {
+		  		newsFlashData: [
+		  			{
+		  				name: "肿瘤防治宣传周：科学抗癌",
+		  				href: "",
+		  				id: 1
+		  			},{
+		  				name: "肿瘤防治宣传周：科学抗癌",
+		  				href: "",
+		  				id: 1
+		  			},{
+		  				name: "肿瘤防治宣传周：科学抗癌",
+		  				href: "",
+		  				id: 1
+		  			},{
+		  				name: "肿瘤防治宣传周：科学抗癌",
+		  				href: "",
+		  				id: 1
+		  			},{
+		  				name: "肿瘤防治宣传周：科学抗癌",
+		  				href: "",
+		  				id: 1
+		  			},{
+		  				name: "肿瘤防治宣传周：科学抗癌",
+		  				href: "",
+		  				id: 1
+		  			},{
+		  				name: "肿瘤防治宣传周：科学抗癌",
+		  				href: "",
+		  				id: 1
+		  			},{
+		  				name: "肿瘤防治宣传周：科学抗癌",
+		  				href: "",
+		  				id: 1
+		  			},
+		  		]
+		  	}
+		  },
+		  methods: {
+		  	getNewsFlash () {
+
+		  	},
+		  	goPage (data) {
+		  		// 
+		  	}
+		  }
+		});
+	})();
+</script>
+</body>
+</html>

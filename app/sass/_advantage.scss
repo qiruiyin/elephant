@@ -1,0 +1,40 @@
+@charset 'utf-8';
+@import  'sandal/core';
+@import  'core/mixins', 'core/functions', 'core/vars';
+
+// 优势
+.advantage {
+	@extend %clearfix;
+	width: $minW;
+	margin: 0 auto;
+	padding: 80px 0 50px;
+
+	& > img {
+		float: left;
+		width: 440px;
+	}
+}
+
+.advantage-info {
+	float: left;
+	width: 760px;
+	padding-right: 40px;
+
+	h3 {
+		font-size: 26px;
+		color: #2E9DD2;
+	}
+
+	p {
+		line-height: 1.5;
+		margin-bottom: 6px;
+		font-size: 16px;
+		color: #777;
+		text-align: justify;
+	}
+
+	img {
+		margin: 0 auto;
+		margin-top: 30px;
+	}
+}

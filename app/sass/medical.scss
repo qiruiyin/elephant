@@ -1,0 +1,389 @@
+@charset 'utf-8';
+@import  'sandal/core';
+@import  'core/mixins', 'core/functions', 'core/vars';
+
+.medical {
+
+}
+
+// .medical-banner {
+	// background-image: url(../img/medical/banner.jpg);
+// }
+
+
+
+// 案例
+.medical-case {
+	position: relative;
+	background: url(../img/medical/tele-case.png) no-repeat;
+	background-size: auto 380px;
+	background-position: top center;
+	
+	&:before {
+		content: "";
+		position: absolute;
+		bottom: 44px;
+		left: -50%;
+		width: 200%;
+		height: 180px;
+		background-color: #f9faff;
+		transform: rotate(3.5deg);
+		transform-origin: 50% 50%;
+		z-index: -100; 
+	}
+
+	.card-header {
+		h2 {
+			color: #fff;
+		}
+	}
+}
+
+.medical-case-content {
+	width: $minW;
+	height: 290px;
+	margin: 0 auto;
+
+	.swiper-slide {
+		cursor: pointer;
+	}
+}
+
+// 步骤
+.medical-step {
+	position: relative;
+	padding-bottom: 100px;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 88px;
+		width: 100%;
+		height: 2px;
+		background: #DFE4E6;
+	}
+}
+
+.medical-step-content {
+	@extend %clearfix;
+	width: $minW;
+	margin: 0 auto;
+}
+
+.medical-step-block {
+	@extend %clearfix;
+	position: relative;
+	width: 25%;
+	height: 178px;
+	display: inline-block;
+
+	&:nth-child(1) {
+  	.medical-step-left {
+			&:before {
+	  		background-image: url(../img/medical/step-01.png)
+			}
+  	}
+  	.medical-step-right {
+	  	background-image: url(../img/medical/case-bg-1.png)
+  	}
+  }
+  &:nth-child(2) {
+  	.medical-step-left {
+			&:before {
+	  		background-image: url(../img/medical/step-02.png)
+			}
+  	}
+  	.medical-step-right {
+	  	background-image: url(../img/medical/case-bg-2.png)
+  	}
+  }
+  &:nth-child(3) {
+  	.medical-step-left {
+			&:before {
+	  		background-image: url(../img/medical/step-03.png)
+			}
+  	}
+  	.medical-step-right {
+	  	background-image: url(../img/medical/case-bg-3.png)
+  	}
+  }
+  &:nth-child(4) {
+  	.medical-step-left {
+			&:before {
+	  		background-image: url(../img/medical/step-04.png)
+			}
+  	}
+  	.medical-step-right {
+	  	background: url(../img/medical/case-bg-4.png)
+  	}
+  }
+}
+
+.medical-step-left {
+	position: relative;
+	float: left;
+	width: 50%;
+	height: 100%;
+	padding-top: 120px;
+	font-size: 50px;
+	color: #2E9DD2;
+	text-align: center;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 25px;
+		left: 50%;
+		width: 36px;
+		height: 40px;
+		margin-left: -18px;
+		background: url(../img/medical/step-01.png) no-repeat;
+		background-size: 100%;
+		background-position: center;
+	}
+
+	&:after {
+		content: '';
+		position: absolute;
+		top: 50%;
+		left: 50%;
+		width: 6px;
+		height: 6px;
+		margin-top: -5px;
+		margin-left: -3px; 
+		background: #fff;
+		border: 2px solid #DFE4E6;
+		border-radius: 10px;
+	}
+
+	p {
+		line-height: 1;
+		font-size: 50px;
+	}
+}
+
+.medical-step-right {
+	float: left;
+	width: 140px;
+	height: 100%;
+	background: url(../img/medical/case-bg-1.png) no-repeat;
+	background-size: 100% 100%;
+	text-align: center;
+  display: flex;
+  align-items: center;
+
+	li {
+		font-size: 14px;
+  	font-size: 0;
+		color: #fff;
+	}
+}
+
+// 体验卡和VIP卡
+.medical-card {
+	@extend %clearfix;
+	width: 100%;
+	padding: 100px 0;
+
+	&.experience {
+		background: #F7F9FA;
+
+		.medical-card-img {
+			background-image: url(../img/medical/card-experience.png);
+		}
+	}
+}
+
+.medical-card-content {
+	width: $minW;
+	margin: 0 auto;
+}
+
+.medical-card-img {
+	float: left;
+	width: 450px;
+	height: 290px;
+	margin: 0 70px 0 16px;
+	background: url(../img/medical/card-vip.png) no-repeat;
+	background-size: 100%;
+}
+
+.medical-card-info {
+	float: left;
+	width: 650px;
+	padding-right: 50px;
+	// padding-left: 60px;
+
+	h3 {
+		padding: 40px 0 30px;
+		line-height: 1;
+		font-size: 30px;
+		color: #293138;
+	}
+
+	& > p {
+		position: relative;
+		padding-left: 30px;
+		line-height: 26px;
+		font-size: 20px;
+		color: #777;
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 6px;
+			left: 0;
+			width: 8px;
+			height: 8px;
+			border-radius: 8px;
+			background: #293138;
+		}
+	}
+}
+
+.medical-card-tips {
+	margin-top: 40px;
+	margin-left: 30px;
+
+	p {
+		position: relative;
+		float: left;
+		padding-left: 70px;
+		line-height: 30px;
+		font-size: 12px;
+		color: #293138;
+
+		&:before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 50%;
+			width: 60px;
+			height: 2px;
+			margin-top: -1px;
+			background: #293138;
+
+		}
+	}
+
+	span {
+		float: right;
+		width: 60px;
+		height: 30px;
+		line-height: 30px;
+		font-size: 12px;
+		color: #A8BECE;
+		background: #fff;
+		box-shadow: 0 2px 12px 0;
+		text-align: center;
+		display: inline-block;
+	}
+}
+
+.medical-ad {
+	width: 100%;
+	height: 400px;
+	padding: 90px 0;
+	background: #F7F9FA url(../img/medical/ad-bg.png) no-repeat;
+	background-size: auto 100%;
+	background-position: center;
+	text-align: center;
+
+	h3 {
+		line-height: 1;
+		margin-bottom: 30px;
+		font-size: 26px;
+		color: #293138;
+	}
+
+	label {
+		line-height: 1;
+		margin-bottom: 10px;
+		font-size: 18px;
+		color: #777;
+		display: block;
+	}
+
+	a {
+		line-height: 1;
+		margin-bottom: 40px;
+		font-size: 30px;
+		color: #293138;
+		display: block;
+	}
+
+	span {
+		line-height: 1;
+		font-size: 40px;
+		color: #2E9DD2;
+		display: block;
+	}
+}
+
+.card-step {
+	padding: 90px;
+	margin: 0 auto;
+	text-align: center;
+
+	h3 {
+		font-size: 26px;
+		color: #333;	
+	}
+}
+
+
+.card-step-content {
+	@extend %clearfix;
+	width: 960px;
+	padding-top: 90px;
+	margin: 0 auto;
+}
+
+.card-step-block {
+	position: relative;
+	float: left;
+	width: 320px;
+
+	&:last-child {
+		&:before, &:after {
+			display: none;
+		}
+	}
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 70px;
+		left: 50%;
+		width: 188px;
+		height: 6px;
+		margin-left: 66px;
+		margin-top: -3px;
+		background: #2E9DD2;
+		border-radius: 6px
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		top: 70px;
+		left: 100%;
+		width: 36px;
+		height: 36px;
+		margin-top: -18px;
+		margin-left: -18px;
+		border-radius: 36px;
+		background: url(../img/medical/check.png) no-repeat;
+	}
+
+	img {
+		margin: 0 auto;
+		margin-bottom: 20px;
+	}
+
+	p {
+		line-height: 26px;
+		font-size: 18px;
+		color: #777;
+	}
+}

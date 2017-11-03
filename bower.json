@@ -1,0 +1,20 @@
+{
+  "name": "template",
+  "description": "A site template",
+  "authors": [
+    "qiruiyin"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "gulp",
+    "sass",
+    "bower"
+  ],
+  "dependencies": {
+    "jquery": "^2.2.0",
+    "sandal": "https://github.com/marvin1023/sandal.git"
+  },
+  "devDependencies": {
+    "swiper": "^3.4.2"
+  }
+}

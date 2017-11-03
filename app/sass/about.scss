@@ -1,0 +1,233 @@
+@charset 'utf-8';
+@import  'sandal/core';
+@import  'core/mixins', 'core/functions', 'core/vars';
+
+.about {
+	
+}
+
+.card-step {
+	background: #f8f9fb;
+}
+
+.step {
+	.step-num	{
+		position: relative;
+		font-size: 50px;
+		color: #2E9DD2;
+
+		&:before {
+			content: "+";
+			position: absolute;
+			top: -10px;
+			left: 50px;
+			font-size: 30px;
+		}
+	}
+
+	.step-time {
+		line-height: 1;
+		margin-bottom: 15px;
+		font-size: 36px;
+		color: #2E9DD2;
+	}
+
+	p {
+		text-align: justify;
+		font-size: 24px;
+		color: #666666;
+	}
+}
+
+.step-1 {
+	position: relative;
+	width: $minW;
+	height: 414px;
+	margin: 0 auto;
+	margin-bottom: 100px;
+
+	.step-1-num {
+		position: absolute;
+		top: 0;
+		left: 432px;
+		width: 114px;
+		height: 114px;
+		line-height: 1;
+		padding-top: 34px;
+		background-color: #2e9dd2;
+		font-size: 50px;
+		color: #fff;
+		text-align: center;
+
+		&:before {
+			content: "+";
+			position: absolute;
+			top: 20px;
+			right: 20px;
+			font-size: 30px;
+		}
+	}
+
+	img {
+		position: absolute;
+		bottom: 0;
+		left: 90px;
+	}
+
+	.step-1-info {
+		position: absolute;
+		top: 57px;
+		left: 546px;
+		width: 2000px;
+		height: 260px;
+		padding: 40px 0 0 70px;
+		background-color: #fff;
+	}
+
+	
+}
+
+.step-2, .step-4 {
+	@extend %clearfix;
+	width: $minW;
+	padding: 0 60px 0 90px;
+	margin: 0 auto;
+	margin-bottom: 100px;
+
+	.step-2-info {
+		position: relative;
+		float: left;
+		width: 330px;
+	}
+}
+
+.step-4 {
+	img {
+		float: left;
+		margin-left: 100px;
+	}
+}
+
+.step-3 {
+	@extend %clearfix;
+	width: $minW;
+	margin: 0 auto;
+	background: url(../img/about/3-bg.png) no-repeat;
+	background-size: 100% auto;
+	background-position: top;
+	margin-bottom: 100px;
+
+	img {
+		float: left;
+		padding: 115px 0 0 90px;
+	}
+
+	.step-3-info {
+		float: left;
+		padding: 20px 0 0 60px;
+
+		.step-num, .step-time, p {
+			color: #fff;
+		}
+	}
+}
+
+.step-5 {
+	width: $minW;
+	margin: 0 auto;
+	text-align: center;
+
+	.step-info {
+		margin-bottom: 40px;
+	}
+
+	.step-num {
+		width: 50px;
+		margin: 0 auto;
+	}
+
+	p {
+		text-align: center;
+	}
+
+	img {
+		margin: 0 auto;
+	}
+}
+
+.step-block-all {
+	position: relative;
+	width: 700px;
+	margin: 0 auto;
+
+
+	&:before {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: 3px;
+		width: 2px;
+		height: 100%;
+		background: #2e9dd2;
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		left: 50%;
+		top: 100%;
+		width: 2px;
+		height: 100px;
+		background-image: linear-gradient(-180deg, #2e9dd2 3%, #FFFFFF 100%);
+	}
+
+}
+
+.step-block {
+	position: relative;
+	width: 50%;
+	padding: 40px 40px 0;
+	margin-left: 50%;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 54px;
+		left: -8px;
+		width: 19px;
+		height: 25px;
+		background: #f8f9fb url(../img/about/step-icon.png) no-repeat;
+		background-size: 100% auto;
+		background-position: center;
+	}
+
+	&:nth-child(2n+1) {
+		position: relative;
+		margin-left: 0;
+		text-align: right;
+		padding-top: 120px;
+
+		&:before {
+			left: auto;
+			right: -10px;
+		}
+		
+		.step-num {
+			position: absolute;
+			right: 60px;
+			top: 40px;
+			float: right;
+			width: 50px;
+		}
+
+		.step-info {
+			width: 100%;
+		}
+		
+		p {
+			text-align: right;
+		}
+	}
+
+	
+}

@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html>
+@@include('./part/head.html')
+<title>大象名医</title>
+<!-- build:css css/doctor.css -->
+<link rel="stylesheet" type="text/css" href="./css/doctor.css">
+<!-- endbuild -->
+<body class="doctor">
+	@@include('./part/header.html')
+	
+	<div class="banner banner-doctor"></div>
+
+	<div class="search">
+		<h3>大象医生让医疗触手可及</h3>
+		<div class="search-input">
+			<label for="">检索关键字</label>
+			<input type="text" placeholder="可搜索医生/科室信息">
+			<div class="search-btn">搜索</div>
+		</div>
+	</div>
+	
+	<div class="container container-list doctor-container">
+		<div class="container-left">
+			<a href="doctor-detail.html" v-for="item in doctorData" class="index-doctor-block">
+	  		<img :src="item.img" alt="头像">
+	  		<h3>{{ item.name }}</h3>
+	  		<label>{{ item.position }}</label>
+	  		<p>{{ item.desc }}</p>
+	  		<span>{{ item.hospital }}</span>
+	  	</a>
+		</div>
+
+		<div class="container-right">
+			<ul class="doctor-ad">
+				<img src="./img/doctor/ad.png" alt="">
+				<img src="./img/doctor/ad.png" alt="">
+				<img src="./img/doctor/ad.png" alt="">
+			</ul>
+		</div>
+	</div>
+
+	@@include('./part/footer.html')
+	
+	@@include('./part/foot.html')
+<script>
+	(function(){
+		var vm = new Vue({
+		  el: '.container',
+		  data () {
+		  	return {
+		  		doctorData: [
+		  			{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},{
+		  				img: './img/index/header.png',
+		  				name: '戴师洛',
+		  				position: '神经科主任医师',
+		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  				hospital: '上海市普陀区利群医院'
+		  			},
+		  		]
+		  	}
+		  },
+		  methods: {
+		  	getNewsFlash () {
+
+		  	},
+		  	goPage (data) {
+		  		// 
+		  	}
+		  }
+		});
+	})();
+</script>
+</body>
+</html>

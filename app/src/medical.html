@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html>
+@@include('./part/head.html')
+<title>远程医疗</title>
+<!-- build:css css/medical.css -->
+<link rel="stylesheet" type="text/css" href="./css/medical.css">
+<!-- endbuild -->
+<body class="medical">
+	@@include('./part/header.html')
+	
+	<div class="banner banner-medical"></div>
+	
+	<div class="container">
+		<!-- 好处 -->
+		<div class="advantage">
+			<div class="advantage-info">
+				<h3>一卡在手，看病无忧</h3>
+				<p>大象医生同美年大健康全面合作，无论患者在哪里，只要找到美年大健康，就能找到大象医生。</p>
+				<p>大象医生专注远程医疗服务，以远程医疗诊室为核心，开展了CT、核磁和胶囊胃镜为主的影像解读。依托上海优质医疗资源，运用互联网可视交互技术，与美年大健康（SZ002044）战略合作，在全国各地建立远程诊室，带给客人高效、专业的就医服务，省去您长途劳顿，费时，费力，费钱的烦恼，实现沪上名医伴你左右。</p>
+				<img src="./img/ele-mn-logo.png" alt="">
+			</div>
+			<img src="./img/medical/advantage.png" alt="">
+		</div>
+
+		<!-- 远程视频病例展示 -->
+		<div class="card medical-case">
+			<div class="card-header">
+				<p></p>
+				<h2>远程病例视频展示</h2>
+				<i></i>
+			</div>
+			<div class="card-content">
+				<div class="swiper-container medical-case-content">
+				  <div class="swiper-wrapper">
+	    			<div @click="goCase(item)" v-for="item in caseDatas" class="swiper-slide">
+					  	<img :src="item.img" alt="">
+					  </div>
+				  </div>
+				  <!-- 如果需要分页器 -->
+				  <div class="swiper-pagination"></div>
+				  
+				  <!-- 如果需要导航按钮 -->
+				  <div class="swiper-button-prev"></div>
+				  <div class="swiper-button-next"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="medical-step">
+			<div class="medical-step-content">
+				<div v-for="item in stepDatas" class="medical-step-block">
+					<div :class="['medical-step-left', 'step-'+item.icon]">
+						<p>{{ item.value }}</p>
+					</div>
+					
+					<div class="medical-step-right">
+						<ul>
+							<li v-for="(textItem, index) in item.text" :key="index">{{ textItem }}</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 体验卡 -->
+		<div class="medical-card experience">
+			<div class="medical-card-content">
+				<div class="medical-card-img"></div>
+				<div class="medical-card-info">
+					<h3>远程诊疗体验卡</h3>
+					<p>为了让更多患者体验到远程诊室的优质服务特推出了“体验卡”可在设有远程诊室的美年当地门店体验；或拨打大象医生客服热线400-600-0990，进行咨询。</p>
+					<div class="medical-card-tips">
+						<p>让医疗触手可及</p>
+						<span>体验卡</span>
+					</div>
+				</div>	
+			</div>
+		</div>
+    <!-- VIP卡 -->
+		<div class="medical-card vip">
+			<div class="medical-card-content">
+				<div class="medical-card-info">
+					<h3>远程诊疗VIP会员卡——您的健康管家</h3>
+					<p>开通磁卡后半年内不限次使用，不管是疑难杂症还是健康咨询，都可以凭此卡进行电话预约，无需漫长等待，尊享优质的远程医疗问诊。</p>
+					<div class="medical-card-tips">
+						<p>让医疗触手可及</p>
+						<span>VIP卡</span>
+					</div>
+				</div>	
+				<div class="medical-card-img"></div>
+			</div>
+		</div>
+		
+		<div class="medical-ad">
+			<h3>咨询当地美年大健康体检中心</h3>
+			<label>详情请拨打</label>
+			<a>400 600 0990</a>
+			<span>一卡在手，看病无忧</span>
+		</div>
+		
+		<div class="card-step">
+			<h3>购卡后简单几步即可预约</h3>
+			<div class="card-step-content">
+				<div class="card-step-block">
+					<img src="./img/medical/card-step-1.png" alt="">
+					<p>拨打400-600-0990</p>
+					<p>或在美年体检前台进行预约</p>
+				</div>
+				<div class="card-step-block">
+					<img src="./img/medical/card-step-2.png" alt="">
+					<p>提供卡号，姓名</p>
+					<p>身份证号，电话</p>
+				</div>
+				<div class="card-step-block">
+					<img src="./img/medical/card-step-3.png" alt="">
+					<p>预约成功</p>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+
+	@@include('./part/footer.html')
+	
+	@@include('./part/foot.html')
+
+	<script>
+		(function(){
+			var vm = new Vue({
+			  el: '.container',
+			  data () {
+			  	return {
+			  		caseDatas: [
+			  			{
+			  				img: './img/medical/case1.jpg'
+			  			},{
+			  				img: './img/medical/case2.jpg'
+			  			},{
+			  				img: './img/medical/case3.jpg'
+			  			},{
+			  				img: './img/medical/case4.jpg'
+			  			},{
+			  				img: './img/medical/case1.jpg'
+			  			},{
+			  				img: './img/medical/case4.jpg'
+			  			}
+			  		],
+			  		stepDatas: [
+			  			{
+			  				icon: '01',
+			  				value: '01',
+			  				text: [
+			  					'了解患者需求',
+			  					'了解患者病情',
+			  					'初诊医护判断'
+			  				],
+			  				bg: ''
+			  			},{
+			  				icon: '02',
+			  				value: '02',
+			  				text: [
+			  					'上传病例资料',
+			  					'匹配专家时间',
+			  					'预约患者确定'
+			  				],
+			  				bg: ''
+			  			},{
+			  				icon: '03',
+			  				value: '03',
+			  				text: [
+			  					'医患沟通问诊',
+			  					'专家诊疗意见',
+			  					'放射影像同步',
+			  					'生化健康监测'
+			  				],
+			  				bg: ''
+			  			},{
+			  				icon: '04',
+			  				value: '04',
+			  				text: [
+			  					'复诊预约服务',
+			  					'转诊就医咨询',
+			  					'专家会诊服务',
+			  					'康复指导服务'
+			  				],
+			  				bg: ''
+			  			},
+			  		]
+			  	}
+			  },
+			  methods: {
+			  	goCase (data) {
+			  		location.href = 'case.html'
+			  	}
+			  }
+			});
+
+			var mySwiper = new Swiper ('.swiper-container', {
+		    loop: true,
+		    // 如果需要分页器
+		    pagination: '.swiper-pagination',
+		    // 如果需要前进后退按钮
+		    nextButton: '.swiper-button-next',
+		    prevButton: '.swiper-button-prev',
+		    slidesPerView : 4,
+				slidesPerGroup : 1,
+		  })
+		})();
+	</script>
+</body>
+</html>

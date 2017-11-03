@@ -1,0 +1,243 @@
+@charset 'utf-8';
+@import  'sandal/core';
+@import  'core/mixins', 'core/functions', 'core/vars';
+
+.shadow-dot {
+	position: relative;
+	padding: 40px 0 90px;
+
+	&:before {
+		content: "";
+		position: absolute;
+		top: 0;
+		width: 100%;
+		height: 380px;
+		background: url(../img/shadow/dot.png) no-repeat;
+		background-size: auto 100%;
+		background-position: center;
+		z-index: -1;
+	}
+
+	&:after {
+		content: "";
+		position: absolute;
+		top: 314px;
+		left: -50%;
+		width: 200%;
+		height: 240px;
+		background-color: #f9faff;
+		transform: rotate(3.5deg);
+		transform-origin: 50% 50%;
+		z-index: -100; 
+	}
+}
+
+.shadow-dot-header {
+	@extend %clearfix;
+	width: 410px;
+  margin: 0 auto;
+  text-align: center;
+
+	h3 {
+		line-height: 1.5;
+		font-size: 26px;
+		color: #333;
+	}
+
+	p {
+		position: relative;
+		float: right;
+		font-size: 14px;
+		color: #13171A;
+	}
+
+	span {
+		position: absolute;
+		top: 50%;
+		left: 0;
+		width: 6px;
+		height: 6px;
+		margin-top: -3px;
+		margin-left: -10px;
+		background: #13171A;
+		border-radius: 6px;
+		display: inline-block;
+	}
+}
+
+.shadow-key {
+	@extend %clearfix;
+	width: 1032px;
+	padding: 40px 0 90px;
+	margin: 0 auto;
+
+	li {
+		position: relative;
+		float: left;
+		width: 344px;
+		height: 355px;
+		padding-top: 250px;
+		background:  no-repeat;
+		background-size: 304px 356px;
+		background-position: center;
+		text-align: center;
+		display: block;
+		
+		&:before {
+			content: "";
+			position: absolute;
+			top: 190px;
+			left: 50%;
+			width: 50px;
+			height: 52px;
+			margin-left: -25px;
+			background: url(../img/shadow/ct.png) no-repeat;
+			background-size: 100%;
+			background-position: center;
+		}
+	}
+
+	.ct {
+		background-image: url(../img/shadow/bg-ct.png);
+
+		&:before {
+			background-image: url(../img/shadow/ct.png);
+		}
+	}
+	.hc {
+		background-image: url(../img/shadow/bg-hc.png);
+
+		&:before {
+			background-image: url(../img/shadow/hc.png);
+		}
+	}
+	.wj {
+		background-image: url(../img/shadow/bg-wj.png);
+
+		&:before {
+			background-image: url(../img/shadow/wj.png);
+		}
+	}
+
+	h3 {
+		font-size: 18px;
+		color: #2E9DD2;
+	}
+
+	p {
+		font-size: 30px;
+		color: #333;
+	}
+
+	span {
+		font-size: 12px;
+		color: #999;
+	}
+}
+
+.shadow-card {
+	padding: 90px 0;
+	background: #f9faff;
+
+	.shadow-card-content {
+		@extend %clearfix;
+		width: 1188px;
+		margin: 0 auto;
+	}
+
+	.shadow-card-img {
+		float: left;
+		width: 400px;
+		height: 240px;
+		background: no-repeat;
+		background-size: 100%;
+		background-position: center;
+
+		&:first-child {
+			width: 388px;
+			height: 480px;
+			background-image: url(../img/shadow/shadow-1.png);
+		}
+
+		&:nth-child(2) {
+			background-image: url(../img/shadow/shadow-2.png);
+		}
+		&:nth-child(3) {
+			background-image: url(../img/shadow/shadow-3.png);
+		}
+		&:nth-child(4) {
+			background-image: url(../img/shadow/shadow-4.png);
+		}
+		&:nth-child(5) {
+			background-image: url(../img/shadow/shadow-5.png);
+		}
+	}
+}
+
+.shadow-doctor {
+	background: url(../img/shadow/doctor-bg.png) no-repeat;
+	background-size: auto 100%;
+	background-position: center;
+}
+
+// 阅片咨询
+.shadow-zixun {
+	background: url(../img/shadow/map.png) no-repeat;
+	background-size: auto 100%;
+	background-position: center 40px;
+}
+
+.shadow-form {
+	width: 760px;
+	padding: 0 0px;
+	margin: 0 auto;
+}
+
+.shadow-form-tr	{
+	margin-bottom: 20px;
+
+	input {
+		width: 230px;
+		height: 30px;
+		margin-left: 30px;
+		padding-left: 10px;
+		border: 1px solid #979797;
+
+		&:first-child {
+			margin-left: 0;
+		}
+	}
+
+	textarea {
+		width: 100%;
+		padding-left: 10px;
+		border: 1px solid #979797;
+	}
+}
+
+.shadow-form-btns {
+	@extend %clearfix;
+
+	.btn {
+		float: left;
+		width: 368px;
+		height: 28px;
+		line-height: 28px;
+		background-color: #e6e6e6;
+		color: #fff;
+		text-align: center;
+		border-radius: 6px;
+		display: block;
+	}
+
+	.btn-submit {
+		margin-right: 24px;
+		background-color: #2E9DD2;
+	}
+}
+
+.shadow-form-tips {
+	text-align: center;
+	font-size: 12px;
+	color: #F5684D;
+}

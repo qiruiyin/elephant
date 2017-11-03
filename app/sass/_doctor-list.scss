@@ -1,0 +1,79 @@
+@charset 'utf-8';
+@import  'sandal/core';
+@import  'core/mixins', 'core/functions', 'core/vars';
+
+// 名医
+.index-doctor {
+	
+}
+
+.index-doctor-list {
+	width: $minW;
+	height: 420px;
+	margin: 0 auto;
+
+	.swiper-pagination-bullet {
+		opacity: 1;
+		background: #9AD4EF;
+	}
+
+	.swiper-pagination-bullet-active {
+		background: #2E9DD2;
+	}
+
+	.swiper-button-next, .swiper-button-prev {
+		top: auto;
+    bottom: 0px;
+    left: 50%;
+    margin-left: -136px;
+    width: 36px;
+    height: 36px;
+    margin-bottom: 2px;
+    background: url(../img/swiper-prev.png) no-repeat;
+    background-size: 100%;
+	}
+
+	.swiper-button-next {
+		margin-left: 100px;
+		background-image: url(../img/swiper-next.png);
+	}
+}
+
+.index-doctor-block {
+	width: 278px;
+	height: 350px;
+	line-height: 1.5;
+	padding: 26px;
+	margin: 0 auto;
+	border: 1px solid #CDD9DE;
+	border-radius: 5px;
+	text-align: center;
+
+	img {
+		width: 76px;
+		height: 76px;
+		margin: 0 auto;
+		border-radius: 76px;
+	}
+
+	h3 {
+		line-height: 1;
+		padding: 10px 0;
+		font-size: 18px;
+		color: #333;
+	}
+
+	label {
+		padding-bottom: 16px;
+		font-size: 14px;
+		color: #2e9dd2;
+		display: block;
+	}
+
+	p {
+		margin-bottom: 30px;
+		font-size: 14px;
+		color: #777;
+		text-align: justify;
+	}
+}

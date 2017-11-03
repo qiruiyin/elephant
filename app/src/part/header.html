@@ -1,0 +1,79 @@
+<!-- 
+	头部
+ -->
+
+<div class="header" id="header">
+	<div class="header-header">
+		<div class="header-header-content">
+			<a href="" class="tel">400-600-9900</a>
+			<ul>
+				<li class="weixin">
+				</li>
+				<li class="weibo">
+				</li>
+			</ul>
+		</div>
+	</div>
+
+	<div class="header-content">
+		<h1 class="logo">
+			<a href="">
+				<img src="./img/header/logo.png" alt="logo">
+			</a>
+		</h1>
+
+		<ul class="menu">
+			<li :class="{'active': item.value == menuActive }" @click="goPage(item.value)" v-for="item in menus" :key="item.value">{{ item.name }}</li>
+		</ul>
+	</div>
+</div>
+
+<script>
+	(function(){
+		var vm = new Vue({
+		  el: '#header',
+		  data: {
+		  	menus: [
+		  		{
+		  			name: '首页',
+		  			value: 'index'
+		  		},{
+		  			name: '远程医疗',
+		  			value: 'medical'
+		  		},{
+		  			name: '远程影像',
+		  			value: 'shadow'
+		  		},{
+		  			name: '大象名医',
+		  			value: 'doctor'
+		  		},{
+		  			name: '关于我们',
+		  			value: 'about'
+		  		},{
+		  			name: '新闻资讯',
+		  			value: 'news'
+		  		}
+		  	],
+		  },
+		  computed: {
+		  	menuActive () {
+		  		var data = 'index';
+
+		  		this.menus.map(function(item, index){
+		  			if(item.name == document.title) {
+		  				data = item.value;
+		  				return;
+		  			}
+		  		});
+
+		  		return data;
+		  	}
+		  },
+		  methods: {
+		  	goPage (url) {
+		  		location.href = url + '.html';
+		  	}
+		  }
+		})	
+	})()
+</script>

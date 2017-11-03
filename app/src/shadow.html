@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+@@include('./part/head.html')
+<title>远程影像</title>
+<!-- build:css css/shadow.css -->
+<link rel="stylesheet" type="text/css" href="./css/shadow.css">
+<!-- endbuild -->
+<body class="shadow">
+	@@include('./part/header.html')
+	
+	<div class="banner banner-shadow"></div>
+	
+	<div class="container">
+		<!-- 好处 -->
+		<div class="advantage">
+			<div class="advantage-info">
+				<h3>我们为医疗机构提供放射科阅片托管服务</h3>
+				<p>大象医生远程阅片服务是专为体检机构及中小型卫生机构提供医学远程影像诊断，旨在通过互联网云服务，提高合作机构阅片质量并减少阅片成本。</p>
+				<p>运用先进的互联网影像传输技术，大象医生可以实时获取您从设备上传的影响文件，并在规定的时效内完成阅片工作，为您解决缺少优质影像医生资源的困境。</p>
+				<img src="./img/ele-mn-logo.png" alt="">
+			</div>
+			<img src="./img/shadow/advantage.png" alt="">
+		</div>
+			
+		<div class="shadow-dot">
+			<div class="shadow-dot-header">
+				<h3>覆盖全国87个城市，累计117个网点</h3>
+				<p><span></span>截止至2017年08月28日</p>
+			</div>
+			<div class="shadow-dot-content">
+				<ul class="shadow-key">
+					<li class="ct">
+						<h5>CT影像</h5>
+						<p>371489</p>
+						<span>截止至2017/08/28 诊断量</span>
+					</li>
+					<li class="hc">
+						<h5>核磁影像</h5>
+						<p>86071</p>
+						<span>截止至2017/08/28 诊断量</span>
+					</li>
+					<li class="wj">
+						<h5>胶囊胃镜影像</h5>
+						<p>12014</p>
+						<span>截止至2017/08/28 诊断量</span>
+					</li>
+				</ul>
+
+				@@include('./part/guarantee.html')
+
+			</div>
+		</div>
+
+		<div class="shadow-card">
+			<div class="shadow-card-content">			
+				<div class="shadow-card-img"></div>
+				<div class="shadow-card-img"></div>
+				<div class="shadow-card-img"></div>
+				<div class="shadow-card-img"></div>
+				<div class="shadow-card-img"></div>
+			</div>
+		</div>
+
+		<!-- 大象名医 -->
+		<div class="card shadow-doctor">
+			<div class="card-header">
+				<p>famous doctors</p>
+				<h2>大象名医</h2>
+				<i></i>
+			</div>
+			<div class="card-content">
+				<div class="swiper-container index-doctor-list">
+				  <div class="swiper-wrapper">
+	    			<div v-for="item in doctorDatas.list" class="swiper-slide">
+					  	<div class="index-doctor-block">
+					  		<img :src="item.img" alt="头像">
+					  		<h3>{{ item.name }}</h3>
+					  		<label>{{ item.position }}</label>
+					  		<p>{{ item.desc }}</p>
+					  		<span>{{ item.hospital }}</span>
+					  	</div>
+					  </div>
+				  </div>
+				  <!-- 如果需要分页器 -->
+				  <div class="swiper-pagination"></div>
+				  
+				  <!-- 如果需要导航按钮 -->
+				  <div class="swiper-button-prev"></div>
+				  <div class="swiper-button-next"></div>
+				</div>
+			</div>
+		</div>
+		
+		<!-- 大象阅片咨询 -->
+		<div class="card shadow-zixun">
+			<div class="card-header">
+				<h2>大象阅片咨询</h2>
+				<i></i>
+			</div>
+			<div class="card-content">
+				<div class="shadow-form">
+					<div class="shadow-form-tr">
+						<input type="text" placeholder="姓名">
+						<input type="text" placeholder="邮件地址">
+						<input type="text" placeholder="联系电话">
+					</div>
+					<div class="shadow-form-tr">
+						<textarea name="" id="" cols="3" placeholder="您想了解的信息"></textarea>
+					</div>
+					<div class="shadow-form-tr shadow-form-btns">
+						<div class="btn btn-submit">提交信息</div>
+						<div class="btn btn-reset">重置信息</div>
+					</div>
+					<div class="shadow-form-tips">*您可在24小时内收到回复，或在周一至周五9:00-18:00拨打021-56772015</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	@@include('./part/footer.html')
+	
+	@@include('./part/foot.html')
+
+<script>
+	(function(){
+		var vm = new Vue({
+		  el: '.container',
+		  data () {
+		  	return {
+			  	doctorDatas: {
+			  		value: 'famous doctors',
+			  		name: '大象名医',
+			  		list: [
+			  			{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			},{
+			  				img: './img/index/header.png',
+			  				name: '戴师洛',
+			  				position: '神经科主任医师',
+			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  				hospital: '上海市普陀区利群医院'
+			  			}
+			  		]
+			  	}
+		  	}
+		  }
+		})
+
+		var mySwiper = new Swiper ('.swiper-container', {
+	    loop: true,
+	    // 如果需要分页器
+	    pagination: '.swiper-pagination',
+	    // 如果需要前进后退按钮
+	    nextButton: '.swiper-button-next',
+	    prevButton: '.swiper-button-prev',
+	    slidesPerView : 4,
+			slidesPerGroup : 1,
+	  })
+	})()
+</script>
+</body>
+</html>

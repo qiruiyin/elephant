@@ -1,0 +1,65 @@
+@charset 'utf-8';
+@import  'sandal/core';
+@import  'core/mixins', 'core/functions', 'core/vars';
+
+* {
+	box-sizing: border-box;
+}
+
+[v-cloak] {
+	display: none;
+}
+
+html, body {
+	width: 100%;
+	min-width: $minW;
+	margin: 0 auto;
+	font-size: $fontSize;
+}
+
+p {
+	margin: 0 auto;
+}
+
+a {
+	text-decoration: none;
+	color: inherit;
+}
+
+ul, li {
+	list-style: none;
+	margin: 0 auto;
+  padding: 0;
+}
+
+img {
+	display: block;
+}
+
+h1, h2, h3, h4, h5 {
+	margin: 0 auto;
+	font-weight: normal;
+}
+
+.container {
+	position: relative;
+
+	&.container-list {
+		padding-top: $containerList;
+	}
+}
+
+.container-left {
+	@extend %clearfix;
+	width: $minW;
+	padding-right: 300px;
+	margin: 0 auto;
+}
+
+.container-right {
+	position: absolute;
+	top: $containerList;
+	left: 50%;
+	width: 272px;
+	margin-left: (600px - 272px);
+}

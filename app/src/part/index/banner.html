@@ -1,0 +1,71 @@
+<!-- 广告 -->
+
+<div class="swiper-container index-banner" id="indexBanner">
+  <div class="swiper-wrapper">
+    <div v-for="item in banners" class="swiper-slide">
+    	<!-- <img :src="item.img" :alt="item.name"> -->
+    	<div class="banner-img" :style="item.styleObject"></div>
+    </div>
+  </div>
+  <!-- 如果需要分页器 -->
+  <div class="swiper-pagination"></div>
+  
+  <!-- 如果需要导航按钮 -->
+  <!-- <div class="swiper-button-prev"></div>
+  <div class="swiper-button-next"></div> -->
+</div>
+
+<script>
+	(function(){
+		var vm = new Vue({
+		  el: '#indexBanner',
+		  data: {
+		  	banners: [
+		  		{
+		  			img: './img/index/banner.png',
+		  			styleObject: {
+		  				backgroundImage: 'url(./img/index/banner.png)',
+		  			},
+		  			name: 'banner1'
+		  		},{
+		  			img: './img/index/banner.png',
+		  			styleObject: {
+		  				backgroundImage: 'url(./img/index/banner.png)',
+		  			},
+		  			name: 'banner2'
+		  		},{
+		  			img: './img/index/banner.png',
+		  			styleObject: {
+		  				backgroundImage: 'url(./img/index/banner.png)',
+		  			},
+		  			name: 'banner3'
+		  		},{
+		  			img: './img/index/banner.png',
+		  			styleObject: {
+		  				backgroundImage: 'url(./img/index/banner.png)',
+		  			},
+		  			name: 'banner4'
+		  		}
+		  	],
+		  	menuActive: 'index'
+		  },
+		  mounted () {
+
+		  },
+		  methods: {
+		  	goPage (url) {
+		  		location.href = url + '.html';
+		  	}
+		  }
+		});
+
+		var indexBanner = new Swiper ('.index-banner', {
+	    loop: true,
+	    // 如果需要分页器
+	    pagination: '.swiper-pagination',
+	    // 如果需要前进后退按钮
+	    // nextButton: '.swiper-button-next',
+	    // prevButton: '.swiper-button-prev'
+	  })        
+	})();
+</script>
