@@ -196,11 +196,24 @@
 .shadow-form-tr	{
 	margin-bottom: 20px;
 
+	input::-webkit-input-placeholder,
+	textarea::-webkit-input-placeholder,
+	input:-moz-placeholder,
+	textarea:-moz-placeholder,
+	input::-moz-placeholder,
+	textarea::-moz-placeholder,
+	input:-ms-input-placeholder,
+	textarea:-ms-input-placeholder {
+		font-size: 14px;
+	  color: #666;
+	}
+
 	input {
 		width: 230px;
 		height: 30px;
 		margin-left: 30px;
 		padding-left: 10px;
+		font-size: 14px;
 		border: 1px solid #979797;
 
 		&:first-child {
@@ -210,6 +223,7 @@
 
 	textarea {
 		width: 100%;
+		font-size: 14px;
 		padding-left: 10px;
 		border: 1px solid #979797;
 	}
@@ -224,15 +238,17 @@
 		height: 28px;
 		line-height: 28px;
 		background-color: #e6e6e6;
-		color: #fff;
+		color: #999;
 		text-align: center;
-		border-radius: 6px;
 		display: block;
+		cursor: pointer;
 	}
 
 	.btn-submit {
 		margin-right: 24px;
+		color: #fff;
 		background-color: #2E9DD2;
+		box-shadow: 0 2px 8px 0 rgba(12,74,103,0.20);
 	}
 }
 

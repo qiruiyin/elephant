@@ -2,19 +2,20 @@
 
 .index-banner {
 	height: 420px;
+  width: 100%;
 
-	.swiper-pagination-bullet {
-		width: 44px;
-		height: 3px;
-		background: #D8D8D8;
-		box-shadow: 0 1px 0 0 rgba(255,255,255,0.50);
-		border-radius: 100px;
-		opacity: 1;
-	}
+	// .swiper-pagination-bullet {
+	// 	width: 44px;
+	// 	height: 3px;
+	// 	background: #D8D8D8;
+	// 	box-shadow: 0 1px 0 0 rgba(255,255,255,0.50);
+	// 	border-radius: 100px;
+	// 	opacity: 1;
+	// }
 
-	.swiper-pagination-bullet-active {
-		background: #2E9DD2;
-	}
+	// .swiper-pagination-bullet-active {
+	// 	background: #2E9DD2;
+	// }
 }
 
 .banner-img	{
@@ -23,4 +24,5 @@
 	background-size: auto 100%;
 	background-position: center;
 	background-repeat: no-repeat;
+	cursor: pointer;
 }

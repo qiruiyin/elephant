@@ -10,15 +10,17 @@
 
 	<div class="banner banner-news"></div>
 
-	<div class="container">
+	<div class="container" v-cloak>
 		<div class="container-left">
-			<div v-for="item in 15" class="news-block">
-				<img src="./img/news/news.png" alt="">
+			<div @click="goPage(item)" v-for="item in newsData" class="news-block">
+				<img :src="item.img" alt="">
 				<div class="news-block-info">
-					<p>走进患者，走进各地--哈密远程健康讲座活动圆满落幕</p>
-					<span>2017/08/12</span>
+					<p>{{ item.name }}</p>
+					<span>{{ item.time }}</span>
 				</div>
 			</div>
+
+			<div id="page" class="page_div"></div>
 		</div>
 
 		<div class="container-right">
@@ -30,11 +32,11 @@
 				<div class="news-flash-content">
 					<ul>
 						<li v-for="item in newsFlashData" :key="item.id">
-							<a :href="item.href">{{ item.name }}</a>
+							<a :href="item.href" target="_blank">{{ item.name }}</a>
 						</li>
 					</ul>
 
-					<div class="change">换一换</div>
+					<div @click="getNewsFlash" class="change">换一换</div>
 				</div>
 			</div>
 		</div>
@@ -50,49 +52,102 @@
 		  el: '.container',
 		  data () {
 		  	return {
+		  		newsData: [
+		  			// {
+		  			// 	img: '',
+		  			// 	id: '',
+		  			// 	href: '',
+		  			// 	time: ''
+		  			// }
+		  		],
 		  		newsFlashData: [
-		  			{
-		  				name: "肿瘤防治宣传周：科学抗癌",
-		  				href: "",
-		  				id: 1
-		  			},{
-		  				name: "肿瘤防治宣传周：科学抗癌",
-		  				href: "",
-		  				id: 1
-		  			},{
-		  				name: "肿瘤防治宣传周：科学抗癌",
-		  				href: "",
-		  				id: 1
-		  			},{
-		  				name: "肿瘤防治宣传周：科学抗癌",
-		  				href: "",
-		  				id: 1
-		  			},{
-		  				name: "肿瘤防治宣传周：科学抗癌",
-		  				href: "",
-		  				id: 1
-		  			},{
-		  				name: "肿瘤防治宣传周：科学抗癌",
-		  				href: "",
-		  				id: 1
-		  			},{
-		  				name: "肿瘤防治宣传周：科学抗癌",
-		  				href: "",
-		  				id: 1
-		  			},{
-		  				name: "肿瘤防治宣传周：科学抗癌",
-		  				href: "",
-		  				id: 1
-		  			},
+		  			// {
+		  			// 	name: "肿瘤防治宣传周：科学抗癌",
+		  			// 	href: "",
+		  			// 	id: 1
+		  			// }
 		  		]
 		  	}
 		  },
+		  mounted () {
+		  	this.fetchData(1);
+		  },
 		  methods: {
-		  	getNewsFlash () {
+		  	fetchData (num) {
+		  		let _this = this;
+		  		this.getNewsFlash();
+		  		$.ajax({
+				    url: apiUrl + "newslist",
+				    type: "POST",
+				    data: {
+				    	page: num,
+				    	rows: 10
+				    },
+				    dataType: 'json',
+				    success: function(e) {
+				    	if(e.code == 1){
+				    		_this.newsData = e.data.records.map(function(item, index) {
+				    			return {
+		  							id: item.id,
+					  				img: imgUrl + item.titleImgPath,
+					  				name: item.title,
+					  				href: item.linkAdress
+			  					}
+				    		});
 
+				    		_this.initPage(1, e.data.total);
+			  			} else {
+			  				alert(e.msg)
+			  			}
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
+		  	},
+		  	initPage(pageNo, totalSize) {
+		  		let _this = this,
+		  				totalPage = parseInt(totalSize/15) + 1;
+		  		if(totalSize >= 10) {
+			  		$("#page").paging({
+							pageNo: pageNo,
+							totalPage: totalPage,
+							totalSize: totalSize,
+							callback: function(num) {
+								// alert(num)
+								_this.fetchData(num);
+							}
+						})
+		  		}
+		  	},
+		  	getNewsFlash () {
+		  		let _this = this;
+		  		$.ajax({
+				    url: apiUrl + "hotnewslist",
+				    type: "POST",
+				    dataType: 'json',
+				    success: function(e) {
+				    	if(e.code == 1){
+				    		if(e.data.length > 0) {
+				    			_this.newsFlashData = e.data.map(function(item, index) {
+				    				return {
+						  				name: item.title,
+						  				href: item.linkAdress,
+						  				id: item.id
+						  			}
+				    			});
+				    		}
+			  			} else {
+			  				alert(e.msg)
+			  			}
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
 		  	},
 		  	goPage (data) {
-		  		// 
+		  		window.open(data.href);
 		  	}
 		  }
 		});

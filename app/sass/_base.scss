@@ -6,15 +6,17 @@
 	box-sizing: border-box;
 }
 
-[v-cloak] {
-	display: none;
-}
+// [v-cloak] {
+// 	display: none;
+// }
 
 html, body {
 	width: 100%;
 	min-width: $minW;
 	margin: 0 auto;
+	font: 14px/1.5 'Helvetica Neue',Helvetica,Arial,'Microsoft Yahei','Hiragino Sans GB','Heiti SC','WenQuanYi Micro Hei',sans-serif;
 	font-size: $fontSize;
+	overflow-x: hidden;
 }
 
 p {
@@ -41,10 +43,13 @@ h1, h2, h3, h4, h5 {
 	font-weight: normal;
 }
 
+
+
 .container {
 	position: relative;
 
 	&.container-list {
+    min-height: 750px;
 		padding-top: $containerList;
 	}
 }
@@ -62,4 +67,15 @@ h1, h2, h3, h4, h5 {
 	left: 50%;
 	width: 272px;
 	margin-left: (600px - 272px);
+}
+
+.index-frame {
+	position: fixed;
+	// top: 60%;
+	right: 0;
+	bottom: 30%;
+	margin-bottom: -80px;
+	font-size: 20px;
+	z-index: 100;
+	cursor: pointer;
 }

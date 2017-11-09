@@ -1,15 +1,26 @@
 <!DOCTYPE html>
 <html>
 @@include('./part/head.html')
-<title>大象医疗</title>
+<title>加入我们</title>
 <!-- build:css css/join.css -->
 <link rel="stylesheet" type="text/css" href="./css/join.css">
 <!-- endbuild -->
 <body>
 	@@include('./part/header.html')
 	
-	<div class="container">
-		<div class="join-block">
+	<div class="container" v-cloak>
+		<div v-for="item in jobInfo" class="join-block">
+			<h2>{{ item.title }}</h2>
+			<div class="join-block-left">
+				<p>岗位职责</p>
+				<div v-html="item.response"></div>
+			</div>
+			<div class="join-block-right">
+				<p>任职资格</p>
+				<div v-html="item.jd"></div>
+			</div>
+		</div>
+		<!-- <div class="join-block">
 			<h2>招聘岗位：文员</h2>
 			<div class="join-block-left">
 				<p>岗位职责</p>
@@ -29,8 +40,8 @@
 					<li>接收实习生。</li>
 				</ul>
 			</div>
-		</div>
-		<div class="join-block">
+		</div> -->
+		<!-- <div class="join-block">
 			<h2>招聘岗位：市场营销主管</h2>
 			<div class="join-block-left">
 				<p>岗位职责</p>
@@ -144,11 +155,45 @@
 					<li>具有出色的人际沟通能力和领导管理能力，良好的职业操守，善于协调、沟通和组织策划。</li>
 				</ul>
 			</div>
-		</div>
+		</div> -->
 	</div>
 
 	@@include('./part/footer.html')
 	
 	@@include('./part/foot.html')
+<script>
+	(function(){
+		var vm = new Vue({
+		  el: '.container',
+		  data () {
+		  	return {
+					jobInfo: []		  		
+		  	}
+		  },
+		  mounted () {
+		  	this.fetchData();
+		  },
+		  methods: {
+		  	fetchData () {
+		  		let _this = this;
+		  		$.ajax({
+				    url: apiUrl + "postionlist",
+				    type: "POST",
+				    dataType: 'json',
+				    success: function(e) {
+				    	if(e.code == 1){
+				    		let res = e.data;
+				    		_this.jobInfo = e.data;	
+			  			}
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
+		  	}
+		  }
+		});
+	})();
+</script>
 </body>
 </html>

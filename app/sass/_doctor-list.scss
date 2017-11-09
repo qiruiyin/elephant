@@ -12,6 +12,10 @@
 	height: 420px;
 	margin: 0 auto;
 
+	.swiper-slide {
+    margin: 0 auto;
+	}
+
 	.swiper-pagination-bullet {
 		opacity: 1;
 		background: #9AD4EF;
@@ -48,12 +52,14 @@
 	border: 1px solid #CDD9DE;
 	border-radius: 5px;
 	text-align: center;
+	background: #fff;
+	cursor: pointer;
 
 	img {
-		width: 76px;
-		height: 76px;
+		width: 66px;
+		height: 66px;
 		margin: 0 auto;
-		border-radius: 76px;
+		border-radius: 66px;
 	}
 
 	h3 {
@@ -71,9 +77,12 @@
 	}
 
 	p {
+		@include ellipsisMore(4);
+		height: 84px;
 		margin-bottom: 30px;
 		font-size: 14px;
 		color: #777;
 		text-align: justify;
+		word-wrap: break-word;
 	}
 }

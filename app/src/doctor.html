@@ -5,37 +5,39 @@
 <!-- build:css css/doctor.css -->
 <link rel="stylesheet" type="text/css" href="./css/doctor.css">
 <!-- endbuild -->
-<body class="doctor">
+<body>
 	@@include('./part/header.html')
 	
 	<div class="banner banner-doctor"></div>
 
-	<div class="search">
-		<h3>大象医生让医疗触手可及</h3>
-		<div class="search-input">
-			<label for="">检索关键字</label>
-			<input type="text" placeholder="可搜索医生/科室信息">
-			<div class="search-btn">搜索</div>
+	<div class="doctor" v-cloak>
+		<div class="search">
+			<h3>大象医生让医疗触手可及</h3>
+			<div class="search-input">
+				<label for="">检索关键字</label>
+				<input v-model="searchData" type="text" placeholder="可搜索医生/科室信息">
+				<div @click="searchSubmit(1)" class="search-btn">搜索</div>
+			</div>
 		</div>
-	</div>
-	
-	<div class="container container-list doctor-container">
-		<div class="container-left">
-			<a href="doctor-detail.html" v-for="item in doctorData" class="index-doctor-block">
-	  		<img :src="item.img" alt="头像">
-	  		<h3>{{ item.name }}</h3>
-	  		<label>{{ item.position }}</label>
-	  		<p>{{ item.desc }}</p>
-	  		<span>{{ item.hospital }}</span>
-	  	</a>
-		</div>
+		
+		<div class="container container-list doctor-container">
+			<div class="container-left">
+				<div @click="goDetail(item)" v-for="item in doctorData" class="index-doctor-block">
+		  		<img :src="item.img" alt="头像">
+		  		<h3>{{ item.name }}</h3>
+		  		<label>{{ item.department }}</label>
+		  		<p>{{ item.desc }}</p>
+		  		<span>{{ item.hospital }}</span>
+		  	</div>
 
-		<div class="container-right">
-			<ul class="doctor-ad">
-				<img src="./img/doctor/ad.png" alt="">
-				<img src="./img/doctor/ad.png" alt="">
-				<img src="./img/doctor/ad.png" alt="">
-			</ul>
+				<div id="page" class="page_div"></div>
+			</div>
+
+			<div class="container-right">
+				<ul class="doctor-ad">
+					<img @click="goNews(item)" v-for="item in newsFlash" :src="item.img" :alt="item.name">
+				</ul>
+			</div>
 		</div>
 	</div>
 
@@ -45,152 +47,154 @@
 <script>
 	(function(){
 		var vm = new Vue({
-		  el: '.container',
+		  el: '.doctor',
 		  data () {
 		  	return {
+		  		searchData: '',
+		  		searchStatus: false,
 		  		doctorData: [
+		  			// {
+		  			// 	img: './img/index/header.png',
+		  			// 	name: '戴师洛',
+		  			// 	position: '神经科主任医师',
+		  			// 	desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+		  			// 	hospital: '上海市普陀区利群医院'
+		  			// }
+		  		],
+		  		newsFlash: [
 		  			{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				position: '神经科主任医师',
-		  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-		  				hospital: '上海市普陀区利群医院'
-		  			},
+		  				url: '',
+		  				img: ''
+		  			}
 		  		]
 		  	}
 		  },
+		  mounted () {
+		  	this.fetchData();
+		  },
 		  methods: {
-		  	getNewsFlash () {
+		  	fetchData () {
+		  		let _this = this;
+		  		_this.getNewsFlash();
+		  		$.ajax({
+				    url: apiUrl + "searchDoctors",
+				    type: "POST",
+				    data: {
+				    	key: '',
+				    	page: 1,
+				    	rows: 15
+				    },
+				    dataType: 'json',
+				    success: function(e) {
+				    	if(e.code == 1){
+				    		_this.doctorData = e.data.records.map(function(item, index) {
+				    			return {
+		  							id: item.id,
+					  				img: imgUrl + item.headImgPath,
+					  				name: item.name,
+					  				position: item.department,
+					  				desc: item.introduce,
+					  				hospital: item.hospital
+			  					}
+				    		});
 
+				    		_this.initPage(1, e.data.total);
+			  			}
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
 		  	},
-		  	goPage (data) {
-		  		// 
+		  	initPage(pageNo, totalSize) {
+		  		let _this = this,
+		  				totalPage = parseInt(totalSize/15) + 1;
+		  		if(totalSize >= 15) {
+			  		$("#page").paging({
+							pageNo: pageNo,
+							totalPage: totalPage,
+							totalSize: totalSize,
+							callback: function(num) {
+								_this.searchSubmit(num);
+							}
+						})
+		  		}
+		  	},
+		  	getNewsFlash () {
+		  		let _this = this;
+		  		$.ajax({
+				    url: apiUrl + "advertisementlist",
+				    type: "POST",
+				    data: {
+				    	type: 4
+				    },
+				    dataType: 'json',
+				    success: function(e) {
+				    	if(e.code == 1){
+				    		if(e.data.length > 0) {
+				    			_this.newsFlash = e.data.map(function(item, index){
+				    				return {
+				    					url: item.linkAdress,
+				    					img: imgUrl + item.imgPath,
+				    					name: item.title
+				    				}
+				    			});
+				    		}
+			  			}
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
+		  	},
+		  	searchSubmit (num) {
+		  		let _this = this;
+		  		if(!num) {
+			  		num = 1;
+			  		if(_this.searchData == '' || _this.searchStatus) {
+			  			return	
+			  		}
+		  		}
+		  		_this.searchStatus = true;
+		  		console.log(_this.searchData, num, 15)
+		  		$.ajax({
+				    url: apiUrl + "searchDoctors",
+				    type: "POST",
+				    data: {
+				    	key: _this.searchData,
+				    	page: num,
+				    	rows: 15
+				    },
+				    dataType: 'json',
+				    success: function(e) {
+				    	_this.searchStatus = false;
+				    	if(e.code == 1){
+				    		_this.doctorData = e.data.records.map(function(item, index) {
+				    			return {
+		  							id: item.id,
+					  				img: imgUrl + item.headImgPath,
+					  				name: item.name,
+					  				position: item.department,
+					  				desc: item.introduce,
+					  				hospital: item.hospital
+			  					}
+				    		});
+
+				    		_this.initPage(1, e.data.total);
+			  			} else {
+			  				alert(e.msg)
+			  			}
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
+		  	},
+		  	goDetail (data) {
+		  		window.open('doctor-detail.html?id=' + data.id);
+		  	},
+		  	goNews (data) {
+		  		window.open(data.url)
 		  	}
 		  }
 		});

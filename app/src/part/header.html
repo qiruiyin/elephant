@@ -5,7 +5,7 @@
 <div class="header" id="header">
 	<div class="header-header">
 		<div class="header-header-content">
-			<a href="" class="tel">400-600-9900</a>
+			<a class="tel">400-600-9900</a>
 			<ul>
 				<li class="weixin">
 				</li>
@@ -17,15 +17,23 @@
 
 	<div class="header-content">
 		<h1 class="logo">
-			<a href="">
+			<a href="index.html">
 				<img src="./img/header/logo.png" alt="logo">
 			</a>
 		</h1>
 
 		<ul class="menu">
-			<li :class="{'active': item.value == menuActive }" @click="goPage(item.value)" v-for="item in menus" :key="item.value">{{ item.name }}</li>
+			<li :class="{'active': item.link == menuActive }" @click="goPage(item.link)" v-for="item in menus" :key="item.link">{{ item.name }}
+				<ul v-if="item.list.length > 0" class="menu-child">
+					<li @click.stop="goPage(it.link)" v-for="it in item.list" :key="it.link">{{ it.name }}</li>
+				</ul>
+			</li>
 		</ul>
 	</div>
+
+	<a href="https://patient.drelephant.com/index" target="_blank" class="index-frame">
+		<img src="./img/index/frame.png" alt="">
+	</a>
 </div>
 
 <script>
@@ -36,22 +44,36 @@
 		  	menus: [
 		  		{
 		  			name: '首页',
-		  			value: 'index'
+		  			link: 'index',
+		  			list: []
 		  		},{
 		  			name: '远程医疗',
-		  			value: 'medical'
+		  			link: 'medical',
+		  			list: []
 		  		},{
 		  			name: '远程影像',
-		  			value: 'shadow'
+		  			link: 'shadow',
+		  			list: []
 		  		},{
 		  			name: '大象名医',
-		  			value: 'doctor'
+		  			link: 'doctor',
+		  			list: []
 		  		},{
 		  			name: '关于我们',
-		  			value: 'about'
+		  			link: 'aboutUs',
+		  			list: [
+		  				{
+		  					name: '关于大象医疗',
+		  					link: 'about'
+		  				},{
+		  					name: '加入我们',
+		  					link: 'join'
+		  				}
+		  			]
 		  		},{
 		  			name: '新闻资讯',
-		  			value: 'news'
+		  			link: 'news',
+		  			list: []
 		  		}
 		  	],
 		  },
@@ -61,7 +83,16 @@
 
 		  		this.menus.map(function(item, index){
 		  			if(item.name == document.title) {
-		  				data = item.value;
+		  				data = item.link;
+		  				return;
+		  			} else if(document.title == '关于大象医疗') {
+		  				data = 'aboutUs';
+		  				return;
+		  			} else if(document.title == '加入我们') {
+		  				data = 'aboutUs';
+		  				return;
+		  			} else if(document.title == '案例展示') {
+		  				data = 'medical';
 		  				return;
 		  			}
 		  		});
@@ -71,7 +102,8 @@
 		  },
 		  methods: {
 		  	goPage (url) {
-		  		location.href = url + '.html';
+		  		if(url != 'aboutUs')
+		  			location.href = url + '.html';
 		  	}
 		  }
 		})	

@@ -10,7 +10,7 @@
 	
 	<div class="banner banner-shadow"></div>
 	
-	<div class="container">
+	<div class="container" v-cloak>
 		<!-- 好处 -->
 		<div class="advantage">
 			<div class="advantage-info">
@@ -31,17 +31,17 @@
 				<ul class="shadow-key">
 					<li class="ct">
 						<h5>CT影像</h5>
-						<p>371489</p>
+						<p>{{ netData.ct }}</p>
 						<span>截止至2017/08/28 诊断量</span>
 					</li>
 					<li class="hc">
 						<h5>核磁影像</h5>
-						<p>86071</p>
+						<p>{{ netData.hc }}</p>
 						<span>截止至2017/08/28 诊断量</span>
 					</li>
 					<li class="wj">
 						<h5>胶囊胃镜影像</h5>
-						<p>12014</p>
+						<p>{{ netData.wj }}</p>
 						<span>截止至2017/08/28 诊断量</span>
 					</li>
 				</ul>
@@ -64,14 +64,14 @@
 		<!-- 大象名医 -->
 		<div class="card shadow-doctor">
 			<div class="card-header">
-				<p>famous doctors</p>
-				<h2>大象名医</h2>
+				<!-- <p>famous doctors</p> -->
+				<h2>大象阅片专家团队介绍</h2>
 				<i></i>
 			</div>
 			<div class="card-content">
 				<div class="swiper-container index-doctor-list">
 				  <div class="swiper-wrapper">
-	    			<div v-for="item in doctorDatas.list" class="swiper-slide">
+	    			<div @click="goPage(item)" v-for="item in doctorDatas.list" class="swiper-slide">
 					  	<div class="index-doctor-block">
 					  		<img :src="item.img" alt="头像">
 					  		<h3>{{ item.name }}</h3>
@@ -100,16 +100,16 @@
 			<div class="card-content">
 				<div class="shadow-form">
 					<div class="shadow-form-tr">
-						<input type="text" placeholder="姓名">
-						<input type="text" placeholder="邮件地址">
-						<input type="text" placeholder="联系电话">
+						<input v-model="form.name" name="name" type="text" placeholder="姓名">
+						<input v-model="form.email" name="email" type="text" placeholder="邮件地址">
+						<input v-model="form.mobile" name="mobile" type="text" placeholder="联系电话">
 					</div>
 					<div class="shadow-form-tr">
-						<textarea name="" id="" cols="3" placeholder="您想了解的信息"></textarea>
+						<textarea v-model="form.askContent" name="askContent" cols="3" placeholder="您想了解的信息"></textarea>
 					</div>
 					<div class="shadow-form-tr shadow-form-btns">
-						<div class="btn btn-submit">提交信息</div>
-						<div class="btn btn-reset">重置信息</div>
+						<div @click="submitForm" class="btn btn-submit">提交信息</div>
+						<div @click="resetForm" class="btn btn-reset">重置信息</div>
 					</div>
 					<div class="shadow-form-tips">*您可在24小时内收到回复，或在周一至周五9:00-18:00拨打021-56772015</div>
 				</div>
@@ -127,69 +127,131 @@
 		  el: '.container',
 		  data () {
 		  	return {
+		  		form: {
+		  			name: '',
+		  			email: '',
+		  			mobile: '',
+		  			askContent: ''
+		  		},
+		  		formSubmitStatus: false,
+		  		netData: {
+		  			ct: '',
+		  			hc: '',
+		  			wj: ''
+		  		},
 			  	doctorDatas: {
 			  		value: 'famous doctors',
 			  		name: '大象名医',
 			  		list: [
-			  			{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			}
+			  			// {
+			  			// 	img: './img/index/header.png',
+			  			// 	name: '戴师洛',
+			  			// 	position: '神经科主任医师',
+			  			// 	desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  			// 	hospital: '上海市普陀区利群医院'
+			  			// }
 			  		]
 			  	}
+		  	}
+		  },
+		  mounted () {
+		  	this.fetchData();
+		  },
+		  updated () {
+		  	var mySwiper = new Swiper ('.swiper-container', {
+			    loop: true,
+			    // 如果需要分页器
+			    pagination: '.swiper-pagination',
+			    paginationClickable: true,
+			    // 如果需要前进后退按钮
+			    nextButton: '.swiper-button-next',
+			    prevButton: '.swiper-button-prev',
+			    slidesPerView : 4,
+					slidesPerGroup : 1,
+			  })
+		  },
+		  methods: {
+		  	fetchData () {
+		  		let _this = this;
+		  		$.ajax({
+				    url: apiUrl + "remoteVideo",
+				    type: "POST",
+				    dataType: 'json',
+				    success: function(e) {
+				    	if(e.code == 1){
+				    		_this.netData = {
+				    			ct: e.data.countMap.ctCount,
+				    			hc: e.data.countMap.hcCount,
+				    			wj: e.data.countMap.jnCount
+				    		};
+				    		_this.doctorDatas.list = e.data.doctorlist.map(function(item, index){
+			  					return {
+		  							id: item.id,
+					  				img: imgUrl + item.headImgPath,
+					  				name: item.name,
+					  				position: item.department,
+					  				desc: item.introduce,
+					  				hospital: item.hospital
+			  					}
+			  				});
+			  			}
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
+		  	},
+		  	submitForm () {
+		  		let _this = this;
+		  		if(_this.formSubmitStatus) return;
+
+		  		if(_this.form.name == '') {
+		  			alert('姓名不能为空')
+		  		} else if (_this.form.mobile == '') {
+		  			alert('电话不能为空')
+		  		} else if (_this.form.askContent == '') {
+		  			alert('咨询内容不能为空')
+		  		} else {		  			
+			  		_this.formSubmitStatus = true;
+			  		$.ajax({
+					    url: apiUrl + "submitConsult",
+					    type: "POST",
+					    data: {
+					    	name: _this.form.name,
+					    	email: _this.form.email,
+					    	mobile: _this.form.mobile,
+					    	askContent: _this.form.askContent
+					    },
+					    dataType: 'json',
+					    success: function(e) {
+					    	_this.formSubmitStatus = false;
+
+					    	if(e.code == 1){
+					    		alert('提交成功');
+					    		_this.resetForm();
+				  			} else {
+				  				alert(e.msg)
+				  			}
+					    },
+					    error: function(jqXHR, textStatus, errorMsg){
+				        // alert("请求失败：" + errorMsg);
+					    }
+						});
+					}
+		  	},
+		  	resetForm () {
+		  		this.form.name = '';
+		  		this.form.email = '';
+		  		this.form.mobile = '';
+		  		this.form.askContent = '';
+		  	},
+		  	goPage(data) {
+		  		window.open('doctor-detail.html?id=' + data.id);
 		  	}
 		  }
 		})
 
-		var mySwiper = new Swiper ('.swiper-container', {
-	    loop: true,
-	    // 如果需要分页器
-	    pagination: '.swiper-pagination',
-	    // 如果需要前进后退按钮
-	    nextButton: '.swiper-button-next',
-	    prevButton: '.swiper-button-prev',
-	    slidesPerView : 4,
-			slidesPerGroup : 1,
-	  })
+		
 	})()
 </script>
 </body>

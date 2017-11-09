@@ -1,18 +1,14 @@
 <!-- 广告 -->
 
-<div class="swiper-container index-banner" id="indexBanner">
+<div class="swiper-container index-banner" id="indexBanner" v-cloak>
   <div class="swiper-wrapper">
     <div v-for="item in banners" class="swiper-slide">
     	<!-- <img :src="item.img" :alt="item.name"> -->
-    	<div class="banner-img" :style="item.styleObject"></div>
+    	<div @click="goPage(item)" class="banner-img 1" :style="item.styleObject"></div>
     </div>
   </div>
   <!-- 如果需要分页器 -->
   <div class="swiper-pagination"></div>
-  
-  <!-- 如果需要导航按钮 -->
-  <!-- <div class="swiper-button-prev"></div>
-  <div class="swiper-button-next"></div> -->
 </div>
 
 <script>
@@ -21,51 +17,63 @@
 		  el: '#indexBanner',
 		  data: {
 		  	banners: [
-		  		{
-		  			img: './img/index/banner.png',
-		  			styleObject: {
-		  				backgroundImage: 'url(./img/index/banner.png)',
-		  			},
-		  			name: 'banner1'
-		  		},{
-		  			img: './img/index/banner.png',
-		  			styleObject: {
-		  				backgroundImage: 'url(./img/index/banner.png)',
-		  			},
-		  			name: 'banner2'
-		  		},{
-		  			img: './img/index/banner.png',
-		  			styleObject: {
-		  				backgroundImage: 'url(./img/index/banner.png)',
-		  			},
-		  			name: 'banner3'
-		  		},{
-		  			img: './img/index/banner.png',
-		  			styleObject: {
-		  				backgroundImage: 'url(./img/index/banner.png)',
-		  			},
-		  			name: 'banner4'
-		  		}
+		  		// {
+		  		// 	img: './img/index/banner.png',
+		  		// 	url: "",
+		  		// 	styleObject: {
+		  		// 		backgroundImage: 'url(./img/index/banner.png)',
+		  		// 	},
+		  		// 	name: 'banner1'
+		  		// }
 		  	],
 		  	menuActive: 'index'
 		  },
 		  mounted () {
-
+		  	this.fetchData();
+		  },
+		  updated () {
+		  	var indexBanner = new Swiper ('.index-banner', {
+			    autoplay: 5000,
+			    // 如果需要分页器
+			    pagination: '.swiper-pagination',
+			    paginationClickable: true,
+			  })
 		  },
 		  methods: {
-		  	goPage (url) {
-		  		location.href = url + '.html';
+		  	fetchData() {
+		  		let _this = this;
+		  		$.ajax({
+				    url: apiUrl + "indexAdvertisement",
+				    type: "POST",
+				    dataType: 'json',
+				    success: function(e){
+				    	if(e.code == 1){
+			  				_this.banners = e.data.advlist.map(function(item, index){
+			  					return {
+			  						img: imgUrl + item.imgPath,
+						  			url: item.linkAdress,
+						  			styleObject: {
+						  				backgroundImage: 'url('+ imgUrl + item.imgPath + ')',
+						  			},
+						  			name: item.title
+			  					}
+			  				});
+			  			}
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
+		  	},
+		  	goPage (data) {
+		  		if(data.url) {
+		  			var url = data.url.substr(0, 4) == 'http' ? data.url : 'http://' + data.url;
+		  			window.open(url);
+		  		}
 		  	}
 		  }
 		});
 
-		var indexBanner = new Swiper ('.index-banner', {
-	    loop: true,
-	    // 如果需要分页器
-	    pagination: '.swiper-pagination',
-	    // 如果需要前进后退按钮
-	    // nextButton: '.swiper-button-next',
-	    // prevButton: '.swiper-button-prev'
-	  })        
+		        
 	})();
 </script>

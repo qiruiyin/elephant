@@ -16,28 +16,31 @@
 					<div class="doctor-info-main-content">
 						<h5>
 							<p>{{ doctorInfo.name }}</p>
-							<label v-for="item in doctorInfo.label">{{ item }}</label>
+							<label>{{ doctorInfo.department }}</label>
+							<label>{{ doctorInfo.rank }}</label>
 						</h5>
 
 						<div class="doctor-info-hospital">{{ doctorInfo.hospital }}</div>
 
-						<div class="doctor-info-specialty">{{ doctorInfo.specialty }}</div>
+						<!-- <div class="doctor-info-specialty">{{ doctorInfo.specialty }}</div> -->
 
-						<div class="doctor-info-desc">{{ doctorInfo.desc }}</div>
+						<!-- <div class="doctor-info-desc">{{ doctorInfo.desc }}</div> -->
 					</div>
 				</div>
 
 				<div class="doctor-info-block">
 					<h3 class="doctor-intro">医师介绍</h3>
-					<p>{{ doctorInfo.intro }}</p>
+					<div v-html="doctorInfo.intro"></div>
 				</div>
 				<div class="doctor-info-block">
 					<h3 class="doctor-specialty">擅长疾病</h3>
-					<p>{{ doctorInfo.specialty }}</p>
+					<div v-html="doctorInfo.specialty"></div>
+					<!-- <p>{{ doctorInfo.specialty }}</p> -->
 				</div>
 				<div class="doctor-info-block">
 					<h3 class="doctor-honor">获得荣誉</h3>
-					<p>{{ doctorInfo.honor }}</p>
+					<div v-html="doctorInfo.honor"></div>
+					<!-- <p>{{ doctorInfo.honor }}</p> -->
 				</div>
 				<div class="doctor-info-block">
 					<h3 class="doctor-process">大象远程医疗流程</h3>
@@ -77,13 +80,13 @@
 						<div class="tuijian-info">
 							<h5>{{ item.name }}</h5>
 							<label>
-								<template v-for="it in item.label">{{ it }}</template>
+								{{ item.department }} {{ item.rank }}
 							</label>
 							<p>{{ item.hospital }}</p>
 						</div>
 					</li>
 				</ul>
-				<div class="more">查看更多</div>
+				<a href="doctor.html" class="more">查看更多</a>
 			</div>
 		</div>
 	</div>
@@ -101,9 +104,9 @@
 		  	return {
 		  		doctorInfo: {
 		  			img: './img/index/header.png',
-		  			id: '',
 		  			name: '戴师洛',
-		  			label: ['神经外科', '主任医师'],
+		  			department: '',
+		  			rank: '',
 		  			hospital: '上海市普陀区利群医院（上海市普陀区利群红十字医院）',
 		  			specialty: '擅长：癫痫、帕金森病、震颤、肌张力障碍、斜颈、梅杰、抽动症、痴呆、精神病、面肌痉挛、三叉神经痛等外科治疗。',
 		  			desc: '简介： 主任医师、教授、硕士生导师。1996年留学法国。负责立体定向和功能性神经外科疾病的治疗，在国内首先应用深部脑刺激（DBS）治疗帕金森病。 主要特长：擅长帕金森...',
@@ -111,36 +114,84 @@
 		  			honor: '戴师洛教授现任中华医学会神经病学分会委员，帕金森病及运动障碍学组委员、癫痫与脑电图学组委员；中华医学会老年医学分会神经病学组委员；上海医学会神经病学分会副主任委员，兼帕金森病及运动障碍学组组长；上海医师协会神经内科分会副会长。中华神经科杂志和中华老年医学杂志编委。戴师洛教授及其团队长期致力于帕金森病、帕金森病运动并发症及帕金森病非运动症状的研究，积累了丰富的成果和经验。主持国家科技部重点专项1项、国家自然基金3项、上海市科委及教委等科研课题25项。发表论文210余篇，其中SCI 69篇，总影响因子240余分。授权发明专利15项。获得国家、上海市科技进步奖14项，其中第一完成人4项。',
 		  		},
 		  		tuijian: [
-		  			{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				label: ['神经科', '主任医师'],
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				label: ['神经科', '主任医师'],
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				label: ['神经科', '主任医师'],
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				label: ['神经科', '主任医师'],
-		  				hospital: '上海市普陀区利群医院'
-		  			},{
-		  				img: './img/index/header.png',
-		  				name: '戴师洛',
-		  				label: ['神经科', '主任医师'],
-		  				hospital: '上海市普陀区利群医院'
-		  			}
+		  			// {
+		  			// 	id: '',
+		  			// 	img: './img/index/header.png',
+		  			// 	name: '戴师洛',
+		  			// 	label: ['神经科', '主任医师'],
+		  			// 	hospital: '上海市普陀区利群医院'
+		  			// }
 		  		]
 		  	}
 		  },
+		  computed: {
+		  	doctorId () {
+		  		let query = this.parseToJson(location.search);
+		  		return query.id;
+		  	}
+		  },
+		  mounted () {
+		  	this.fetchData();
+		  },
 		  methods: {
+		  	parseToJson (url) {
+					if(url != "" && url.indexOf("?") != -1){
+						let	url_json = {};
+						url = url.replace("#/author", "");
+						url = url.split("?");
+						url = url[1].split('&');
+						for (let i = 0; i<url.length ; i++) {
+					    let str = url[i].split('=');
+					    url_json[str[0]]=str[1];
+						}
+						return url_json;
+					} else {
+						return "";
+					}
+				},
+		  	fetchData () {
+		  		let _this = this;
+		  		$.ajax({
+				    url: apiUrl + "doctorDetail",
+				    type: "POST",
+				    data: {
+				    	id: _this.doctorId
+				    },
+				    dataType: 'json',
+				    success: function(e) {
+				    	if(e.code == 1){
+				    		let res = e.data;
+				    		_this.doctorInfo = {
+				    			img: imgUrl + res.detail.headImgPath,
+					  			name: res.detail.name,
+					  			department: res.detail.department,
+					  			rank: res.detail.rank,
+					  			hospital: res.detail.hospital,
+					  			specialty: res.detail.belongTo,
+					  			desc: '',
+					  			intro: res.detail.introduce,
+					  			honor: res.detail.honor
+				    		}
+				    		if(res.doctorlist.length > 0) {		    			
+					    		_this.tuijian = res.doctorlist.map(function(item, index) {
+					    			return {
+			  							id: item.id,
+						  				img: imgUrl + item.headImgPath,
+						  				name: item.name,
+						  				rank: item.rank,
+						  				department: item.department,
+						  				desc: item.introduce,
+						  				hospital: item.hospital
+				  					}
+					    		});
+				    		}
+			  			}
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
+		  	},
 		  	goPage (data) {
 		  		location.href = 'doctor.html'
 		  	}

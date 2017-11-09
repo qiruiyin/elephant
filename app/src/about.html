@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 @@include('./part/head.html')
-<title>关于我们</title>
+<title>关于大象医疗</title>
 <!-- build:css css/about.css -->
 <link rel="stylesheet" type="text/css" href="./css/about.css">
 <!-- endbuild -->
@@ -10,7 +10,7 @@
 
 	<div class="banner banner-about"></div>
 
-	<div class="container">
+	<div class="container" v-cloak>
 		<!-- 好处 -->
 		<div class="advantage">
 			<div class="advantage-info">
@@ -36,6 +36,7 @@
 							<p>大象医生成立</p>
 						</div>
 						<img src="./img/about/1.png" alt="">
+						<div class="step-line"></div>
 					</div>
 
 					<div class="step-2">
@@ -46,6 +47,7 @@
 							<p>统搭建调试完成</p>
 						</div>
 						<img src="./img/about/2.png" alt="">
+						<div class="step-line"></div>
 					</div>
 
 					<div class="step-3">
@@ -55,6 +57,7 @@
 							<div class="step-time">2016年1月</div>
 							<p>正式为美年大健康提供远程阅片服务</p>
 						</div>
+						<div class="step-line"></div>
 					</div>
 
 					<div class="step-4">
@@ -64,6 +67,7 @@
 							<p>为70余家体检和医疗机构提供的CT，MRI远程影像服务量近6万例</p>
 						</div>
 						<img src="./img/about/4.png" alt="">
+						<div class="step-line"></div>
 					</div>
 
 					<div class="step-5">
@@ -76,18 +80,11 @@
 					</div>
 					
 					<div class="step-block-all">
-						<div class="step-block">
-							<div class="step-num">06</div>
+						<div class="step-block" v-for="item in historyData">
+							<div class="step-num">{{ item.sort }}</div>
 							<div class="step-info">
-								<div class="step-time">2017年7月</div>
-								<p>开设3家远程诊室</p>
-							</div>
-						</div>
-						<div class="step-block">
-							<div class="step-num">07</div>
-							<div class="step-info">
-								<div class="step-time">2017年8月</div>
-								<p>开设3家远程诊室</p>
+								<div class="step-time">{{ item.time }}</div>
+								<p>{{ item.title }}</p>
 							</div>
 						</div>
 					</div>
@@ -99,5 +96,50 @@
 	@@include('./part/footer.html')
 	
 	@@include('./part/foot.html')
+
+<script>
+	(function(){
+		var vm = new Vue({
+		  el: '.container',
+		  data () {
+		  	return {
+		  		historyData: [
+		  			// {}
+		  		]
+		  	}
+		  },
+		  mounted () {
+		  	this.fetchData();
+		  },
+		  methods: {
+		  	fetchData () {
+		  		let _this = this;
+		  		$.ajax({
+				    url: apiUrl + "history",
+				    type: "POST",
+				    dataType: 'json',
+				    success: function(e){
+				    	if(e.code == 1){
+			  				_this.historyData = e.data.map(function(item, index){
+			  					return {
+			  						time: item.vtime,
+			  						title: item.event,
+			  						sort: item.sort > 9 ? item.sort : '0' + item.sort
+			  					}
+			  				});
+			  			}
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
+		  	},
+		  	goCase (data) {
+		  		location.href = 'case.html?id=' + data.id;
+		  	}
+		  }
+		});
+	})();
+</script>
 </body>
 </html>

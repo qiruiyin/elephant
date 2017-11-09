@@ -10,7 +10,7 @@
 	
 	<div class="banner banner-medical"></div>
 	
-	<div class="container">
+	<div class="container" v-cloak>
 		<!-- 好处 -->
 		<div class="advantage">
 			<div class="advantage-info">
@@ -34,6 +34,7 @@
 				  <div class="swiper-wrapper">
 	    			<div @click="goCase(item)" v-for="item in caseDatas" class="swiper-slide">
 					  	<img :src="item.img" alt="">
+					  	<h5>{{ item.title }}</h5>
 					  </div>
 				  </div>
 				  <!-- 如果需要分页器 -->
@@ -124,88 +125,116 @@
 	
 	@@include('./part/foot.html')
 
-	<script>
-		(function(){
-			var vm = new Vue({
-			  el: '.container',
-			  data () {
-			  	return {
-			  		caseDatas: [
-			  			{
-			  				img: './img/medical/case1.jpg'
-			  			},{
-			  				img: './img/medical/case2.jpg'
-			  			},{
-			  				img: './img/medical/case3.jpg'
-			  			},{
-			  				img: './img/medical/case4.jpg'
-			  			},{
-			  				img: './img/medical/case1.jpg'
-			  			},{
-			  				img: './img/medical/case4.jpg'
+<script>
+	(function(){
+		var vm = new Vue({
+		  el: '.container',
+		  data () {
+		  	return {
+		  		caseDatas: [
+		  			// {
+		  			// 	img: './img/medical/case1.jpg'
+		  			// },{
+		  			// 	img: './img/medical/case2.jpg'
+		  			// },{
+		  			// 	img: './img/medical/case3.jpg'
+		  			// },{
+		  			// 	img: './img/medical/case4.jpg'
+		  			// },{
+		  			// 	img: './img/medical/case1.jpg'
+		  			// },{
+		  			// 	img: './img/medical/case4.jpg'
+		  			// }
+		  		],
+		  		stepDatas: [
+		  			{
+		  				icon: '01',
+		  				value: '01',
+		  				text: [
+		  					'了解患者需求',
+		  					'了解患者病情',
+		  					'初诊医护判断'
+		  				],
+		  				bg: ''
+		  			},{
+		  				icon: '02',
+		  				value: '02',
+		  				text: [
+		  					'上传病例资料',
+		  					'匹配专家时间',
+		  					'预约患者确定'
+		  				],
+		  				bg: ''
+		  			},{
+		  				icon: '03',
+		  				value: '03',
+		  				text: [
+		  					'医患沟通问诊',
+		  					'专家诊疗意见',
+		  					'放射影像同步',
+		  					'生化健康监测'
+		  				],
+		  				bg: ''
+		  			},{
+		  				icon: '04',
+		  				value: '04',
+		  				text: [
+		  					'复诊预约服务',
+		  					'转诊就医咨询',
+		  					'专家会诊服务',
+		  					'康复指导服务'
+		  				],
+		  				bg: ''
+		  			},
+		  		]
+		  	}
+		  },
+		  mounted () {
+		  	this.fetchData();
+		  },
+		  updated () {
+		  	var mySwiper = new Swiper ('.swiper-container', {
+			    // loop: true,
+			    autoplay: 5000,
+			    // 如果需要分页器
+			    pagination: '.swiper-pagination',
+			    paginationClickable: true,
+			    // 如果需要前进后退按钮
+			    nextButton: '.swiper-button-next',
+			    prevButton: '.swiper-button-prev',
+			    slidesPerView : 4,
+					slidesPerGroup : 1,
+			  })
+		  },
+		  methods: {
+		  	fetchData () {
+		  		let _this = this;
+		  		$.ajax({
+				    url: apiUrl + "caselist",
+				    type: "POST",
+				    dataType: 'json',
+				    success: function(e){
+				    	if(e.code == 1){
+			  				_this.caseDatas = e.data.map(function(item, index){
+			  					return {
+			  						img: imgUrl + item.imgPath,
+			  						id: item.id,
+			  						title: item.title
+			  					}
+			  				});
 			  			}
-			  		],
-			  		stepDatas: [
-			  			{
-			  				icon: '01',
-			  				value: '01',
-			  				text: [
-			  					'了解患者需求',
-			  					'了解患者病情',
-			  					'初诊医护判断'
-			  				],
-			  				bg: ''
-			  			},{
-			  				icon: '02',
-			  				value: '02',
-			  				text: [
-			  					'上传病例资料',
-			  					'匹配专家时间',
-			  					'预约患者确定'
-			  				],
-			  				bg: ''
-			  			},{
-			  				icon: '03',
-			  				value: '03',
-			  				text: [
-			  					'医患沟通问诊',
-			  					'专家诊疗意见',
-			  					'放射影像同步',
-			  					'生化健康监测'
-			  				],
-			  				bg: ''
-			  			},{
-			  				icon: '04',
-			  				value: '04',
-			  				text: [
-			  					'复诊预约服务',
-			  					'转诊就医咨询',
-			  					'专家会诊服务',
-			  					'康复指导服务'
-			  				],
-			  				bg: ''
-			  			},
-			  		]
-			  	}
-			  },
-			  methods: {
-			  	goCase (data) {
-			  		location.href = 'case.html'
-			  	}
-			  }
-			});
-
-			var mySwiper = new Swiper ('.swiper-container', {
-		    loop: true,
-		    // 如果需要分页器
-		    pagination: '.swiper-pagination',
-		    // 如果需要前进后退按钮
-		    nextButton: '.swiper-button-next',
-		    prevButton: '.swiper-button-prev',
-		    slidesPerView : 4,
-				slidesPerGroup : 1,
-		  })
-		})();
-	</script>
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
+		  	},
+		  	goCase (data) {
+		  		window.open('case.html?id=' + data.id);
+		  	}
+		  }
+		});
+	})();
+</script>
 </body>
 </html>

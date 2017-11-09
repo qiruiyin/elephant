@@ -3,12 +3,14 @@
 @import  'core/mixins', 'core/functions', 'core/vars';
 
 .case {
-	
+	.footer-bg {
+		background-color: #f8f9fb;
+	}
 }
 
 .case-detail {
 	width: 1160px;
-	padding-top: 40px;
+	padding: 40px 0 20px;
 	margin: 0 auto;
 }
 
@@ -27,20 +29,68 @@
 }
 
 .case-detail-content {
-	p {
-		margin-bottom: 20px;
-		text-align: justify;
-		font-size: 16px;
-		color: #777;
-	}
+	// p {
+	// 	margin-bottom: 20px;
+	// 	text-align: justify;
+	// 	font-size: 16px;
+	// 	color: #777;
+	// }
 }
 
 .case-img {
-	margin-bottom: 30px;
+	padding-bottom: 20px;
+	margin-left: 200px;
+	margin-top: -50px;
+	margin-bottom: 40px;
 	text-align: center;
+	
+	.swiper-button-next, .swiper-button-prev {
+		top: auto;
+    bottom: 0;
+    left: 0;
+    width: 36px;
+    height: 5px;
+    margin-left: 20px;
+    background: url(../img/case/case-left.png) no-repeat;
+    background-size: 100%;
+	}
 
+	.swiper-button-next {
+		margin-left: 80px;
+		background-image: url(../img/case/case-right.png);
+	}
+	
 	img {
-		margin: 0 20px; 
-		display: inline-block;
+		margin: 0 auto; 
+	}
+}
+
+.case-prev, .case-next {
+	position: fixed;
+	top: 50%;
+	left: 0;
+	width: 60px;
+	height: 150px;
+	margin-top: -75px;
+	background: url(../img/case/case-arrow.png) no-repeat;
+	background-size: 36px 68px;
+	background-position: center;
+	cursor: pointer;
+
+	&:hover {
+		background-image: url(../img/case/case-arrow-hover.png);
+		background-size: 100%;
+
+		transform: rotate(180deg)
+	}
+}
+
+.case-next {
+	left: auto;
+	right: 0;
+	transform: rotate(180deg);
+
+	&:hover {
+		transform: rotate(0)
 	}
 }

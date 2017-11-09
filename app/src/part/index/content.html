@@ -1,6 +1,6 @@
 <!-- 首页内容区 -->
 
-<div class="content" id="indexContent" v-cloak>
+<div class="content" id="indexContent">
 	<!-- 关于我们 -->
 	<div class="card index-about">
 		<div class="card-header">
@@ -70,14 +70,14 @@
 					</ul>
 					<div class="index-advantage-block-tips">
 						<p>让医疗触手可及</p>
-						<span>优势</span>
+						<span>传统</span>
 					</div>
 				</div>
 
 				<div class="index-advantage-block-img index-advantage-block-img-2">
-					<img src="./img/index/advantage-1.png" class="index-advantage-block-img-bg" alt="">
-					<img src="./img/index/advantage-1-top.png" class="index-advantage-block-img-top">
-					<img src="./img/index/advantage-1-center.png" class="index-advantage-block-img-center">
+					<img src="./img/index/advantage-2.png" class="index-advantage-block-img-bg" alt="">
+					<img src="./img/index/advantage-2-top.png" class="index-advantage-block-img-top">
+					<img src="./img/index/advantage-2-center.png" class="index-advantage-block-img-center">
 				</div>
 			</div>
 		</div>
@@ -93,7 +93,7 @@
 			<div class="swiper-container index-doctor-list">
 			  <div class="swiper-wrapper">
     			<div v-for="item in doctorDatas.list" class="swiper-slide">
-				  	<div class="index-doctor-block">
+				  	<div @click="goDoctor(item)" class="index-doctor-block">
 				  		<img :src="item.img" alt="头像">
 				  		<h3>{{ item.name }}</h3>
 				  		<label>{{ item.position }}</label>
@@ -115,9 +115,6 @@
 
 	<div class="index-ad"></div>
 	
-	<div class="index-frame">
-		<img src="./img/index/frame.png" alt="">
-	</div>
 	<!-- shadow -->
 	<div class="card index-shadow">
 		<div class="card-header">
@@ -128,6 +125,8 @@
 		</div>
 		<div class="card-content">
 			@@include('../guarantee.html')
+
+			<a href="shadow.html" class="guarantee-more">了解更多</a>
 		</div>
 	</div>
 </div>
@@ -185,49 +184,13 @@
 			  		value: 'famous doctors',
 			  		name: '大象名医',
 			  		list: [
-			  			{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			},{
-			  				img: './img/index/header.png',
-			  				name: '戴师洛',
-			  				position: '神经科主任医师',
-			  				desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
-			  				hospital: '上海市普陀区利群医院'
-			  			}
+			  			// {
+			  			// 	img: './img/index/header.png',
+			  			// 	name: '戴师洛',
+			  			// 	position: '神经科主任医师',
+			  			// 	desc: '主任医师教授研究生导师，获山西名医称号，兼任国内分米学会、糖尿病学会委员，陕西省糖尿病专业委员会主任委员、内分泌及代谢疾病......',
+			  			// 	hospital: '上海市普陀区利群医院'
+			  			// }
 			  		]
 			  	},
 			  	shadowDatas: {
@@ -236,20 +199,55 @@
 			  	}
 		  	}
 		  },
+		  mounted () {
+		  	this.fetchData();
+		  },
+		  updated () {
+		  	var indexDoctorList = new Swiper ('.index-doctor-list', {
+			    loop: true,
+			    autoplay: 5000,
+			    // 如果需要分页器
+			    pagination: '.swiper-pagination',
+			    paginationClickable: true,
+			    // 如果需要前进后退按钮
+			    nextButton: '.swiper-button-next',
+			    prevButton: '.swiper-button-prev',
+			    slidesPerView : 4,
+					slidesPerGroup : 1,
+			  })
+		  },
 		  methods: {
-		  	
+		  	fetchData() {
+		  		let _this = this;
+		  		$.ajax({
+				    url: apiUrl + "/indexAdvertisement",
+				    type: "POST",
+				    dataType: 'json',
+				    success: function(e){
+				    	if(e.code == 1){
+			  				_this.doctorDatas.list = e.data.doctorlist.map(function(item, index){
+			  					return {
+		  							id: item.id,
+					  				img: imgUrl + item.headImgPath,
+					  				name: item.name,
+					  				position: item.department,
+					  				desc: item.introduce,
+					  				hospital: item.hospital
+			  					}
+			  				});
+			  			}
+				    },
+				    error: function(jqXHR, textStatus, errorMsg){
+			        // alert("请求失败：" + errorMsg);
+				    }
+					});
+		  	},
+		  	goDoctor (data) {
+		  		window.open('doctor-detail.html?id=' + data.id)
+		  	}
 		  }
 		})
 
-		var indexDoctorList = new Swiper ('.index-doctor-list', {
-	    loop: true,
-	    // 如果需要分页器
-	    pagination: '.swiper-pagination',
-	    // 如果需要前进后退按钮
-	    nextButton: '.swiper-button-next',
-	    prevButton: '.swiper-button-prev',
-	    slidesPerView : 4,
-			slidesPerGroup : 1,
-	  })
+		
 	})()
 </script>

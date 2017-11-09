@@ -1,0 +1,53 @@
+/*
+ * 页数按钮样式
+ */
+
+.page_div {
+	float: left;
+	width: 100%;
+	margin-bottom: 40px;
+	text-align: right;
+}
+
+.page_div a {
+	min-width: 30px;
+	height: 28px;
+	border: 1px solid #2E9DD2;
+	text-align: center;
+	margin: 0 4px;
+	cursor: pointer;
+	line-height: 28px;
+	color: #666666;
+	font-size: 13px;
+	display: inline-block;
+}
+
+#firstPage,
+#lastPage {
+	width: 50px;
+	color: #2E9DD2;
+	border: 1px solid #2E9DD2;
+}
+
+#prePage,
+#nextPage {
+	width: 70px;
+	color: #2E9DD2;
+	border: 1px solid #2E9DD2;
+}
+
+.page_div .current {
+	background-color: #2E9DD2;
+	border-color: #2E9DD2;
+	color: #FFFFFF;
+}
+
+.totalPages {
+	margin: 0 10px;
+}
+
+.totalPages span,
+.totalSize span {
+	color: #2E9DD2;
+	margin: 0 5px;
+}

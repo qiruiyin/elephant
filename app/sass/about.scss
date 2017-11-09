@@ -3,7 +3,9 @@
 @import  'core/mixins', 'core/functions', 'core/vars';
 
 .about {
-	
+	.footer-bg {
+		background-color: #f8f9fb;
+	}
 }
 
 .card-step {
@@ -33,9 +35,20 @@
 	}
 
 	p {
+		line-height: 1;
 		text-align: justify;
+		word-wrap: break-word;
 		font-size: 24px;
 		color: #666666;
+	}
+
+	.step-line {
+		position: absolute;
+		width: 19px;
+		height: 203px;
+		background: url(../img/about/step-line.png) no-repeat;
+		background-size: 100%;
+		z-index: 2;
 	}
 }
 
@@ -84,31 +97,69 @@
 		background-color: #fff;
 	}
 
-	
+	.step-line {
+		right: 140px;
+		bottom: -20px;
+	}
 }
 
 .step-2, .step-4 {
+	position: relative;
 	@extend %clearfix;
 	width: $minW;
 	padding: 0 60px 0 90px;
 	margin: 0 auto;
 	margin-bottom: 100px;
+	
+	.step-num {
+		margin-bottom: 20px;
+	}
 
 	.step-2-info {
 		position: relative;
 		float: left;
 		width: 330px;
+
+		p {
+			margin-bottom: 10px;
+		}
+	}
+
+	.step-time {
+
+	}
+
+	.step-line {
+		left: 160px;
+		bottom: -140px;
 	}
 }
 
 .step-4 {
+	.step-2-info {
+    width: 440px;
+	}
+
 	img {
 		float: left;
-		margin-left: 100px;
+		margin-left: 90px;
+	}
+
+	p {
+		line-height: 1.5;
+	}
+
+	.step-line {
+		left: 150px;
+		bottom: -140px;
+		width: 400px;
+		height: 235px;
+		background-image: url(../img/about/step-line-4.png);
 	}
 }
 
 .step-3 {
+	position: relative;
 	@extend %clearfix;
 	width: $minW;
 	margin: 0 auto;
@@ -116,6 +167,11 @@
 	background-size: 100% auto;
 	background-position: top;
 	margin-bottom: 100px;
+
+	.step-line {
+		right: 140px;
+		bottom: 30px;
+	}
 
 	img {
 		float: left;
@@ -214,10 +270,14 @@
 		
 		.step-num {
 			position: absolute;
-			right: 60px;
+			right: 48px;
 			top: 40px;
 			float: right;
-			width: 50px;
+			
+			&:before {
+				left: auto;
+				right: -10px;
+			}
 		}
 
 		.step-info {

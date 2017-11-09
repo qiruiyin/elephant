@@ -8,7 +8,9 @@ $headerIconW: 26px;
 $headerLogoH: 48px;
 
 .header {
+	position: relative;
 	border-bottom: 1px solid #DBE7ED;
+	z-index: 100;
 }
 
 .header-header {
@@ -43,44 +45,50 @@ $headerLogoH: 48px;
 
 	ul {
 		float: right;
-	}
 
-	li {
-		float: left;
-		position: relative;
-		width: $headerIconW;
-		height: $headerIconW;
-		margin-left: $headerIconW;
-		margin-top: ($headerHeaderH - $headerIconW)/2;
-		background: url(../img/header/weixin.png) no-repeat;
-		background-size: 100%;
-		cursor: pointer;
-		
-		&:hover {
+		& > li {
+			float: left;
+			position: relative;
+			width: $headerIconW;
+			height: $headerIconW;
+			margin-left: $headerIconW;
+			margin-top: ($headerHeaderH - $headerIconW)/2;
+			background: url(../img/header/weixin.png) no-repeat;
+			background-size: 100%;
+			cursor: pointer;
+			
+			&:hover {
+				&:before {
+					display: block;
+				}
+			}
+
 			&:before {
-				display: block;
+				content: "";
+				position: absolute;
+				top: $headerHeaderH - ($headerHeaderH - $headerIconW)/2;
+				left: -65px + $headerIconW/2;
+				width: 130px;
+				height: 143px;
+				background: url(../img/header/weixin-qrcode.png) no-repeat;
+				background-size: 100%;
+				z-index: 99;
+				display: none;
 			}
 		}
-
-		&:before {
-			content: "";
-			position: absolute;
-			top: $headerHeaderH - ($headerHeaderH - $headerIconW)/2;
-			left: -65px + $headerIconW/2;
-			width: 130px;
-			height: 143px;
-			background: url(../img/header/weixin-qrcode.png) no-repeat;
-			background-size: 100%;
-			z-index: 8;
-			display: none;
-		}
 	}
-
+	
 	.weibo {
 		background-image: url(../img/header/weibo.png);
+
+		&:before {
+			background-image: url(../img/header/weibo-qrcode.png);
+		}
 	}
 	.weixin {
-		background-image: url(../img/header/weixin.png);
+		&:before {
+			background-image: url(../img/header/weixin-qrcode.png);
+		}
 	}
 }
 
@@ -97,17 +105,23 @@ $headerLogoH: 48px;
 
 .menu {
 	float: right;
+	height: 74px;
 
-	li {
+	& > li {
 		float: left;
 		position: relative;
 		line-height: $headerLogoH;
+		height: 100%;
 		padding: 0 16px;
 		cursor: pointer;
 		color: #777;
 
 		&:hover {
 			color: #2e9dd2;
+
+			.menu-child {
+				display: block;
+			}
 		}
 		
 		&:first-child {
@@ -123,7 +137,7 @@ $headerLogoH: 48px;
 			left: 0;
 			width: 1px;
 			height: 16px;
-			margin-top: -8px;
+			margin-top: -21px;
 			background: #e0eef5;
 			transform: rotate(30deg);
 		}
@@ -134,13 +148,53 @@ $headerLogoH: 48px;
 			&:after {
 				content: "";
 				position: absolute;
-				left: 0;
+				left: 50%;
 				bottom: 0;
-				width: 100%;
+				width: 60%;
 				height: 4px;
-				margin-bottom: -28px;
+				margin-left: -30%;
+				margin-bottom: -1px;
 				background: #2E9DD2;
 			}
+		}
+	}
+}
+
+.menu-child {
+	position: absolute;
+	top: 100%;
+	left: -10%;
+	width: 120%;
+	margin-top: 1px;
+	background: #fff;
+	border: 1px solid #DBE7ED;
+	border-top: 0;
+	z-index: 100;
+	display: none;
+
+	& > li {
+		position: relative;
+		text-align: center;
+		font-size: 14px;
+		color: #777;
+
+		&:hover {
+			color: #2e9dd2;
+		}
+	
+		&:first-child {
+			&:before {
+				border-top: 0;
+			}
+		}
+
+		&:before {
+			content: "";
+			position: absolute;
+			top: 0;
+			width: 80%;
+			left: 10%;
+			border-top: 1px solid #dbe7ed;
 		}
 	}
 }
