@@ -147,7 +147,11 @@
 					});
 		  	},
 		  	goPage (data) {
-		  		window.open(data.href);
+		  		if(data.href) {
+			  		window.open(data.href);
+		  		} else {
+		  			window.open("news-detail.html?id=" + data.id);
+		  		}
 		  	}
 		  }
 		});

@@ -1,0 +1,31 @@
+@charset 'utf-8';
+@import  'sandal/core';
+@import  'core/mixins', 'core/functions', 'core/vars';
+
+.remote-box{
+	width: $minW;
+	margin: 0 auto;
+	padding-top: 70px;
+
+	p {
+		text-align: justify;
+	}
+}
+
+.remote-title{
+	height:26px;
+	line-height:26px;
+	margin-bottom:10px;
+	font-size:26px;
+	font-family: PingFangSC-Regular;
+	color: #2E9DD2;
+}
+
+.remote-time{
+	font-family: PingFangSC-Regular;
+	font-size-size:16px;
+	color:#777;
+	height:22px;
+	line-height:22px;
+}
+

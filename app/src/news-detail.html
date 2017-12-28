@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	@@include('./part/head.html')
+	<meta charset="UTF-8">
+	<title>新闻详情</title>
+<!-- build:css css/news-detail.css -->
+	<link rel="stylesheet" type="text/css" href="./css/news-detail.css">
+<!-- endbuild -->
+</head>
+<body class='remote'>
+	@@include('./part/header.html')
+	
+	<div class='container remote-box'>
+		<div class='remote-title'>{{ remoteInfo.title }}</div>
+		<div class="remote-time">{{ remoteInfo.time }}</div>
+		<div v-html="remoteInfo.content"></div>
+	</div>
+	
+	@@include('./part/footer.html')
+
+	<script >
+		$(document).ready(function(){
+			var vm = new Vue({
+			  el: '.container',
+			  data () {
+			  	return {
+			  		remoteInfo:{
+			  			title: "",
+				  		time: "",
+				  		content: "",
+				  		titleImgPath:''
+			  		},
+			  		
+			  	}
+			  },
+			  computed: {
+			  	newsId () {
+			  		let query = this.parseToJson(location.search);
+			  		return query.id;
+			  	}
+			  },
+			  mounted() {
+			  	this.fetchData()
+			  },
+			  methods: {
+			  	fetchData () {
+			  		var _this = this;
+			  		$.ajax({
+							type:'post',
+							url:  apiUrl + 'newsDetail',
+							data:{
+								id: this.newsId
+							},
+							dataType:'json',
+							success:function(e){
+								if(e.code==1){
+									let res=e.data;
+									// console.log(res)
+
+								_this.remoteInfo={
+										title:res.title,
+										time:res.createTime,
+										content:res.content,
+										// titleImgPath:res.title.ImagePath
+
+									}
+								}
+							},
+							error:function(e){
+								
+							}
+						})
+			  	},
+			  	parseToJson (url) {
+						if(url != "" && url.indexOf("?") != -1){
+							let	url_json = {};
+							url = url.replace("#/author", "");
+							url = url.split("?");
+							url = url[1].split('&');
+							for (let i = 0; i<url.length ; i++) {
+						    let str = url[i].split('=');
+						    url_json[str[0]]=str[1];
+							}
+							return url_json;
+						} else {
+							return "";
+						}
+					},
+			  }
+			});
+			
+		})
+	</script>
+</body>
+</html>
